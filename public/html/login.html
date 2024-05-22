@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="main">
+        <div class="left">
+            <div class="phone_img">
+                <img src="../assets/login/home-phones.png">
+                <div class="img_slider owl-carousel">
+                    <div class="img">
+                        <img src="../assets/login/screenshot1.png">
+                    </div>
+                    <div class="img">
+                        <img src="../assets/login/screenshot2.png">
+                    </div>
+                    <div class="img">
+                        <img src="../assets/login/screenshot3.png">
+                    </div>
+                    <div class="img">
+                        <img src="../assets/login/screenshot4.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="form">
+                <div class="logo">
+                    <img src="../assets/login/login-logo.png">
+                </div>
+                <form action="#">
+                    <input type="text" id="username" placeholder="Phone number, username or email">
+                    <input type="password" id="password" placeholder="Password">
+                    <button type="submit" id="login">Log In</button>
+                </form>
+                <span class="line">OR</span>
+                <a class="login_by_fb" href="#">
+                    <i class="fa-brands fa-square-facebook"></i>Log in with Facebook
+                </a>
+                <a class="forgot_password" href="#">Forgot password?</a>
+            </div>
+            <div class="signup">
+                <p><a href="#" id="signup">Create new account</a></p>
+            </div>
+            <p>Get the app.</p>
+            <div class="other_socials">
+                <div class="img">
+                    <img src="../assets/login/google_play.png">
+                </div>
+                <div class="img">
+                    <img src="../assets/login/microsoft.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="#">Meta</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Instagram Lite</a></li>
+            <li><a href="#">Threads</a></li>
+            <li><a href="#">Contact Uploading & Non-user</a></li>
+            <li><a href="#">Meta Verified</a></li>
+        </ul>
+
+        <a class="en" href="#">English <i class="fa-solid fa-angle-down"></i></a>
+        <small>&copy; 2024 Instagram from Meta</small>
+    </footer>
+
+    <script src="../assets/cdn-js/jquery-3.7.1.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script type="module" src="../js/fireBaseAuth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</body>
+</html>
