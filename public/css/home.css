@@ -6,6 +6,7 @@
   --blue: #0095f6;
   --very-light-grey: rgb(227, 225, 225);
 }
+
 * {
   scrollbar-width: none;
 }
@@ -13,8 +14,8 @@
 *::-webkit-scrollbar {
   display: none;
 }
-html,
-body {
+
+html, body {
   scroll-behavior: smooth;
   background-color: var(--white);
   font-family: "Alumni Sans Pinstripe", sans-serif;
@@ -23,6 +24,7 @@ body {
   display: flex;
   width: 100vw;
 }
+
 .sidebar {
   position: fixed;
   width: 18%;
@@ -35,6 +37,7 @@ body {
   justify-content: space-between;
   z-index: 1;
 }
+
 .upper-container {
   display: flex;
   justify-content: flex-start;
@@ -43,14 +46,17 @@ body {
   gap: 1rem;
   padding: 1rem;
 }
+
 .logo {
   width: 120px;
   margin: 1rem;
   height: 50px;
 }
+
 .logo2 {
   display: none;
 }
+
 .link {
   display: flex;
   align-items: center;
@@ -60,19 +66,23 @@ body {
   margin-left: 20px;
   margin-right: 10px;
 }
+
 .link a {
   color: var(--black);
   text-decoration: none;
   font-size: small;
 }
+
 .link:hover {
   background-color: rgb(246, 244, 244);
   border-radius: 10px;
 }
+
 .profile-sidebar img {
   border-radius: 50%;
   height: 120px;
 }
+
 .bottom-container {
   display: flex;
   justify-content: flex-start;
@@ -81,10 +91,12 @@ body {
   gap: 1rem;
   margin-right: 10px;
 }
+
 .bottom-navbar {
   display: none;
   z-index: 1;
 }
+
 .center-feed {
   width: 90vw;
   display: block;
@@ -95,6 +107,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 .story-post-container {
   display: flex;
   flex-direction: column;
@@ -102,9 +115,9 @@ body {
   padding: 2rem;
   height: 100vh;
   width: 100%;
-
   margin-left: 70px;
 }
+
 .story-container {
   display: flex;
   justify-content: flex-start;
@@ -114,6 +127,7 @@ body {
   overflow-x: auto;
   gap: 1rem;
 }
+
 .story {
   display: flex;
   flex-direction: column;
@@ -154,12 +168,13 @@ body {
   object-fit: cover;
   border: 1px solid var(--white);
 }
-/* -------------------------Story-view--------------------- */
+
 .custom-svg-size {
   color: var(--white);
   width: 25px;
   height: 25px;
 }
+
 .story-full {
   background-color: var(--grey);
   position: fixed;
@@ -175,6 +190,7 @@ body {
   pointer-events: none;
   transition: all 100ms ease;
 }
+
 .story-image-class {
   width: 350px;
   background-size: cover;
@@ -183,10 +199,12 @@ body {
   height: 95%;
   position: relative;
 }
+
 .story-full.active {
   visibility: visible;
   pointer-events: auto;
 }
+
 .in-story-icons {
   position: relative;
 }
@@ -198,29 +216,31 @@ body {
   width: 32px;
 }
 
-.left-arrow,
-.right-arrow {
+.left-arrow, .right-arrow {
   width: 32px;
 }
+
 .content {
   height: 100%;
   align-items: center;
   display: flex;
   flex-direction: row;
 }
-/* ------------------------- */
+
 .story-reply-form {
   display: flex;
   justify-content: flex-start;
   position: absolute;
   bottom: 40px;
-  left: 53%;
-  transform: translateX(-100%);
+  left: 50%;
+  transform: translateX(-80%);
 }
+
 input[type="text"] {
   background-color: transparent;
   border-radius: 20px;
 }
+
 .bottom-icons {
   position: fixed;
   display: flex;
@@ -228,8 +248,8 @@ input[type="text"] {
   width: 80px;
   height: 50px;
   bottom: 3%;
-  left: 62%;
-  transform: translateX(-100%);
+  left: 50%;
+  transform: translateX(90%);
 }
 
 .top-left-story {
@@ -239,7 +259,8 @@ input[type="text"] {
   justify-content: flex-start;
   position: fixed;
   top: 5%;
-  left: 31%;
+  left: 30%;
+  transform: translateX(80%);
 }
 
 .top-of-story {
@@ -249,48 +270,57 @@ input[type="text"] {
   height: 50px;
   position: fixed;
   top: 5%;
-  right: 37%;
+  right: 30%;
+  transform: translateX(-140%);
 }
 
 .story-username {
   margin-left: 10px;
   color: var(--very-light-grey);
 }
+
 .top-left-story img {
   width: 35px;
   height: 35px;
   object-fit: cover;
   background-size: cover;
-  margin-left: 70px;
+  margin-left: 10px;
   border-radius: 50%;
 }
-/* ----------------Profile-Suggestion------------------ */
+
+/* Profile Suggestion */
 .profile-suggestion {
   width: 45%;
   padding: 2rem;
   margin-right: 4rem;
 }
+
 .suggest-see-all {
   display: flex;
   justify-content: space-between;
 }
+
 .suggest-see-all p {
   font-weight: bold;
 }
+
 .suggest-see-all #see-all {
   font-weight: bold;
   color: #000;
 }
+
 .profile-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0rem;
 }
+
 .profile-suggestion p {
   font-size: 0.8rem;
   color: var(--light-grey);
 }
+
 .profile {
   display: flex;
   align-items: center;
@@ -344,32 +374,34 @@ input[type="text"] {
   color: var(--light-grey);
   margin-bottom: 0;
 }
+
 .switch:hover {
   color: var(--black);
   cursor: pointer;
 }
+
 .profile-list {
   font-size: 0.7rem;
   color: var(--very-light-grey);
 }
+
 .profile-list li {
   list-style-type: disc;
   margin-left: 10px;
   line-height: 1;
 }
+
 .profile-list li.no-bullet {
   list-style-type: none;
 }
+
 .profile-list-end {
   font-size: 0.7rem !important;
   color: var(--very-light-grey) !important;
   margin-top: 20px !important;
 }
-.top-left-story {
-  display: flex;
-  flex-direction: row;
-}
-/* ------------------screen with 1100px size----------------- */
+
+/* Responsive Styles */
 @media screen and (max-width: 1100px) {
   .profile-suggestion {
     display: none;
@@ -383,32 +415,36 @@ input[type="text"] {
   .story-reply-form {
     font-size: 15px;
     bottom: 16%;
-    left: 54%;
+    left: 50%;
+    transform: translateX(-80%);
   }
 
   .bottom-icons {
     width: 60px;
     bottom: 13%;
-    left: 62%;
+    left: 50%;
+    transform: translateX(140%);
   }
 
   .top-left-story {
     top: 15%;
     left: 30%;
+    transform: translateX(40%);
   }
 
   .top-of-story {
     width: 80px;
     height: 50px;
     top: 15%;
-    right: 35%;
+    right: 50%;
+    transform: translateX(200%);
   }
   .top-left-story img {
     width: 35px;
     height: 35px;
     object-fit: cover;
     background-size: cover;
-    margin-left: 70px;
+    margin-left: 10px;
     border-radius: 50%;
   }
   .story-image-class {
@@ -416,6 +452,7 @@ input[type="text"] {
     height: 73%;
   }
 }
+
 @media screen and (max-width: 1000px) {
   .sidebar {
     width: 60px;
@@ -452,18 +489,21 @@ input[type="text"] {
   .bottom-icons {
     width: 60px;
     bottom: 14%;
-    left: 62%;
+    left: 50%;
+    transform: translateX(160%);
   }
   .top-left-story {
     top: 15%;
-    left: 28%;
+    left: 50%;
+    transform: translateX(-130%);
   }
 
   .top-of-story {
     width: 80px;
     height: 50px;
     top: 15%;
-    right: 35%;
+    right: 50%;
+    transform: translateX(200%);
   }
   .story-image-class {
     width: 350px;
@@ -473,7 +513,8 @@ input[type="text"] {
   .story-reply-form {
     font-size: 15px;
     bottom: 17%;
-    left: 53%;
+    left: 50%;
+    transform: translateX(-90%);
   }
 }
 
@@ -509,18 +550,21 @@ input[type="text"] {
     width: 60px;
     height: 30px;
     bottom: 13%;
-    left: 66%;
+    left: 50%;
+    transform: translateX(90%);
   }
   .top-left-story {
     top: 15%;
-    left: 20%;
+    left: 50%;
+    transform: translateX(-100%);
   }
 
   .top-of-story {
     width: 50px;
     height: 30px;
     top: 15%;
-    right: 32%;
+    right: 50%;
+    transform: translateX(200%);
   }
   .story-username {
     font-size: 13px;
@@ -533,6 +577,7 @@ input[type="text"] {
   .story-reply-form {
     font-size: 12px;
     bottom: 14%;
-    left: 55%;
+    left: 50%;
+    transform: translateX(-80%);
   }
 }
