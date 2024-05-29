@@ -1,0 +1,26 @@
+#createNewPostHeader {
+    font-family: 'Ricardo', sans-serif;
+    font-size: small;
+  }
+  .icon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .icon-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black circle */
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease; /* Smooth transition */
+  }
+  
+  .icon-container:hover::before {
+    opacity: 0.7; /* Increase opacity on hover */
+  }
