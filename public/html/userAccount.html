@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
+    <title id="title">Profile Page</title>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -58,12 +58,17 @@
               <div class="mr-5">
                 <span id="posts-count" class="fw-600">0</span> posts
               </div>
-              <div class="mr-5">
-                <span id="followers-count" class="fw-600">0</span> followers
-              </div>
-              <div class="mr-5">
-                <span id="following-count" class="fw-600">0</span> following
-              </div>
+              <a href="" data-toggle="modal" data-target="#followersModal">
+                <div class="mr-5">
+                  <span id="followers-count" class="fw-600">0</span> followers
+                </div>
+              </a>
+
+              <a href="" data-toggle="modal" data-target="#followingListModal">
+                <div class="mr-5">
+                  <span id="following-count" class="fw-600">0</span> following
+                </div>
+              </a>
             </div>
             <div id="name"><strong>Name of the User</strong></div>
             <div id="bio">Bio of the user</div>
@@ -102,31 +107,16 @@
         <hr class="mb-0" />
 
         <!-- Navigation container -->
-        <div class="row mt-0">
+        <div class="row mt-0 nav-main">
           <div class="col-12 text-center">
             <nav class="nav justify-content-center">
-              <a
-                class="nav-link active"
-                href="#"
-                id="posts-link"
-                onclick="showSection('posts')"
-              >
+              <a class="nav-link active" href="#" id="posts-link">
                 <i class="bi bi-grid-3x3"></i> POSTS
               </a>
-              <a
-                class="nav-link"
-                href="#"
-                id="saved-link"
-                onclick="showSection('saved')"
-              >
+              <a class="nav-link" href="#" id="saved-link">
                 <i class="bi bi-bookmark"></i> SAVED
               </a>
-              <a
-                class="nav-link"
-                href="#"
-                id="tagged-link"
-                onclick="showSection('tagged')"
-              >
+              <a class="nav-link" href="#" id="tagged-link">
                 <i class="bi bi-person-square"></i> TAGGED
               </a>
             </nav>
@@ -134,10 +124,44 @@
         </div>
       </div>
 
-     <!-- Posts container -->
-<div id="posts-container" class="row">
-  <!-- Posts will be dynamically added here -->
-</div>
+      <!-- sub nav bar  -->
+      <div class="row mt-0 nav-sub">
+        <div class="col-12 text-center">
+          <nav class="nav justify-content-center">
+            <a
+              class="nav-link active mr-1 fs-20"
+              href=""
+              id="posts-link-icon"
+              
+            >
+              <i class="bi bi-grid-3x3"></i>
+            </a>
+            <a
+              class="nav-link mr-1 fs-20"
+              href=""
+              id="saved-link-icon"
+              
+            >
+              <i class="bi bi-bookmark"></i>
+            </a>
+            <a
+              class="nav-link fs-20"
+              href=""
+              id="tagged-link-icon"
+            >
+              <i class="bi bi-person-square"></i> 
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+      
+
+      <!-- Posts container -->
+      <div id="posts-container" class="row">
+        <!-- Posts will be dynamically added here -->
+      </div>
 
       <!-- Modal -->
 
@@ -150,7 +174,7 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered modal-lg"
+          class="modal-dialog mxw-80 modal-dialog-centered modal-lg"
           role="document"
         >
           <div class="modal-content">
@@ -158,103 +182,266 @@
               <div id="modal-post" class="col-6">
                 <img id="modal-post-image" src="" alt="" />
               </div>
-              <div class="modal-post-info col-6 p-0">
-                <div class="modal-profile d-flex mt-3 pl-3">
+              <div class="modal-post-info col-6">
+                <div
+                  class="modal-profile d-flex mt-3 mr-2 justify-content-between"
+                >
+                  <div class="d-flex">
                     <div class="mr-3">
-                        <img src="" alt="" id="modal-profile-picture" class="profile-picture-size rounded-circle">
+                      <img
+                        src=""
+                        alt=""
+                        id="modal-profile-picture"
+                        class="profile-picture-size rounded-circle"
+                      />
                     </div>
                     <div>
-                        <p id="modal-username" class="fs-14 fw-600 mb-0"></p>
-                        <p id="postlocation" class="fs-12 mb-0">Random Location</p>
+                      <p id="modal-username" class="fs-14 fw-600 mb-0"></p>
+                      <p id="postlocation" class="fs-12 mb-0">
+                        Random Location
+                      </p>
                     </div>
-                    <div class="ml-12">
-                        <i class="bi bi-three-dots"></i>
-                    </div>
+                  </div>
+                  <div>
+                    <i class="bi bi-three-dots"></i>
+                  </div>
                 </div>
-                <hr>
-                <div class="comment-section pl-3 d-flex h-35">
-                    <div class="mr-3">
-                        <img src="" alt="" id="modal-profile-picture-comments" class=" profile-picture-size rounded-circle">
-                    </div>
-                    <div>
-                        <span id="comment-section-username" class="fs-14 fw-600 mb-0"></span>
-                        <span id="modal-post-caption" class="fs-14"></span>
-                    </div>
+                <hr />
+                <div class="comment-section mr-2 d-flex">
+                  <div class="mr-3">
+                    <img
+                      src=""
+                      alt=""
+                      id="modal-profile-picture-comments"
+                      class="profile-picture-size rounded-circle"
+                    />
+                  </div>
+                  <div>
+                    <span
+                      id="comment-section-username"
+                      class="fs-14 fw-600 mb-0"
+                    ></span>
+                    <span id="modal-post-caption" class="fs-14"></span>
+                  </div>
                 </div>
-                <hr>
+                <hr />
 
-                <div class="like-section pl-3 pr-3 ">
+                <div class="like-section">
+                  <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-between">
-                        <div class="d-flex justify-content-between">
-                            <div class="mr-3 fs-20 fw-600">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="mr-3 fs-20">
-                                <i class="bi bi-chat"></i>
-                            </div>
-                            <div class="mr-3 fs-20">
-                                <i class="bi bi-send"></i>
-                            </div>  
-                        </div>
-                        <div class="mr-3 fs-20">
-                            <i class="bi bi-bookmark"></i>
-                        </div>
+                      <div class="mr-3 fs-20 fw-600">
+                        <i
+                          class="like-button far fa-heart"
+                          id="modal-like-button"
+                        ></i>
+                      </div>
+                      <div class="mr-3 fs-20">
+                        <i class="bi bi-chat"></i>
+                      </div>
+                      <div class="mr-3 fs-20">
+                        <i class="bi bi-send"></i>
+                      </div>
                     </div>
-                    <div >
-                        <p class="mb-0">Liked by <span id="liked-by-username" class="fw-600"></span><span> and </span><span id="like-count" class="fw-600"></span><span class="fw-600"> others</span></p>
+                    <div class="mr-3 fs-20">
+                      <i class="bi bi-bookmark"></i>
                     </div>
-                    <div>
-                        <p id="post-date" class="fs-12 text-muted"></p>
-                    </div>
-                    
+                  </div>
+                  <div>
+                    <p class="mb-0">
+                      Liked by
+                      <span id="liked-by-username" class="fw-600"></span
+                      ><span> and </span
+                      ><span id="like-count" class="fw-600"></span
+                      ><span class="fw-600"> others</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p id="post-date" class="fs-12 text-muted"></p>
+                  </div>
                 </div>
-                <hr>
-                <div class="add-comment pl-3 pr-3 d-flex">
-                        <div class="fs-20">
-                            <i class="bi bi-emoji-smile"></i>
-                        </div>
-                        <div class="ml-3">
-                            <input type="text" placeholder="Add a comment..." class="border-less">
-                        </div>
-                        <div class="ml-8">
-                            <a href="" class="text-primary">Post</a>
-                        </div>
+                <hr />
+                <div class="add-comment d-flex justify-content-between">
+                  <div class="d-flex">
+                    <div class="fs-20">
+                      <i class="bi bi-emoji-smile"></i>
+                    </div>
+                    <div class="ml-3">
+                      <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        class="border-less"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <a href="" class="text-primary mr-2">Post</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
-          <!-- settings modal  -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"  aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+      <!-- settings modal  -->
+      <div
+        class="modal fade"
+        id="settingsModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
             <div class="container p-0">
-              <div class="row mt-2"><div class="col"><button class="btn w-100 border-less">Apps and Websites</button></div></div>
-              <hr>
-              
-              <div class="row"><div class="col"><button class="btn w-100 border-less">QR code</button></div></div>
-              <hr>
+              <div class="row mt-2">
+                <div class="col">
+                  <button class="btn w-100 border-less">
+                    Apps and Websites
+                  </button>
+                </div>
+              </div>
+              <hr />
 
-              <div class="row"><div class="col"><button class="btn w-100 border-less">Notifications</button></div></div>
-              <hr>
+              <div class="row">
+                <div class="col">
+                  <button class="btn w-100 border-less">QR code</button>
+                </div>
+              </div>
+              <hr />
 
-              <div class="row"><div class="col"><button class="btn w-100 border-less">Setting and Privacy</button></div></div>
-              <hr>
+              <div class="row">
+                <div class="col">
+                  <button class="btn w-100 border-less">Notifications</button>
+                </div>
+              </div>
+              <hr />
 
-              <div class="row"><div class="col"><button class="btn w-100 border-less">Supervision</button></div></div>
-              <hr>
+              <div class="row">
+                <div class="col">
+                  <button class="btn w-100 border-less">
+                    Setting and Privacy
+                  </button>
+                </div>
+              </div>
+              <hr />
 
-              <div class="row"><div class="col"><button class="btn w-100 border-less">Log Out</button></div></div>
-              <hr>
+              <div class="row">
+                <div class="col">
+                  <button class="btn w-100 border-less">Supervision</button>
+                </div>
+              </div>
+              <hr />
 
-              <div class="row mb-3"><div class="col"><button class="btn w-100 border-less">Cancel</button></div></div>
+              <div class="row">
+                <div class="col">
+                  <button class="btn w-100 border-less">Log Out</button>
+                </div>
+              </div>
+              <hr />
+
+              <div class="row mb-3">
+                <div class="col">
+                  <button class="btn w-100 border-less">Cancel</button>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
 
+      <!-- followers list modal  -->
+      <div
+        class="modal fade"
+        id="followersModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="followersModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <div
+                class="d-flex justify-content-center align-items-center w-100"
+              >
+                <h5 class="modal-title fs-16 fw-600">Followers</h5>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <!-- Search Bar -->
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </div>
+
+              <!-- Followers List -->
+              <div class="followers-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- following list modal  -->
+      <div
+        class="modal fade"
+        id="followingListModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <div
+                class="d-flex justify-content-center align-items-center w-100"
+              >
+                <h5 class="modal-title fs-16 fw-600">Following</h5>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <!-- Search Bar -->
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </div>
+
+              <!-- Followers List -->
+              <div class="followers-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
