@@ -110,6 +110,28 @@ export async function fetchStoryById(storyId) {
   }
 }
 
+export async function updateVisitedStatus(storyId) {
+  try {
+    const response = await fetch(`${API_URL}/stories/${storyId}`, {
+      method: 'PATCH', // JSON Server uses PATCH for updates
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ visited: true })
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update visited status');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating visited status:', error);
+    throw error;
+  }
+}
+
 // Fetch all reels
 export async function fetchReels() {
   try {

@@ -1,55 +1,57 @@
-import { fetchStories, fetchUserById } from "../js/apiFetch.js";
+import {
+  fetchStories,
+  fetchUserById,
+  fetchUsers,
+  updateVisitedStatus,
+} from "../js/apiFetch.js";
 
-async function receiveData ()  {
+// const username = localStorage.getItem("username");
+const username = "thulasi";
+const userData = await fetchUsers();
+let user = userData.find((user) => user.username === username);
+
+async function receiveStories() {
   const data = await fetchStories();
-  const jsonData = []; // Array to store data objects
+  const jsonData = [];
   for (const element of data) {
-    const { userId, imageUrl, views, isVideo } = element; // Destructure the properties from the element
-    const profilePicUrl = await fetchUserById(userId); // Wait for the profile picture URL
-    const dataObject = { userId, imageUrl, views, isVideo, profilePicUrl }; // Create data object with extracted properties
-    jsonData.push(dataObject); // Push data object to array
+    const {
+      id,
+      userId,
+      imageUrl,
+      views,
+      isVideo,
+      canReply,
+      canShare,
+      visited,
+    } = element;
+    const profilePicUrl = await fetchUserById(userId);
+    const dataObject = {
+      id,
+      userId,
+      imageUrl,
+      views,
+      isVideo,
+      canReply,
+      canShare,
+      visited,
+      profilePicUrl,
+    };
+    jsonData.push(dataObject);
   }
-  return jsonData; // Return the JSON data
-};
-let storyFull = await receiveData();
+  return jsonData;
+}
 
-const profileSuggestions = [
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Thulasi",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Ashwin",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Hrishi",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Betsy",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Dhanu",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Ashok",
-  },
-  {
-    profileSuggestionsDP:
-      "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-    profileSuggestionsUsername: "Arjun",
-  },
-];
+async function receiveSuggestions() {
+  const followingIds = Array.isArray(user.following) ? user.following : [];
+  const filteredUsers = userData.filter(
+    (user) => user.username !== username && !followingIds.includes(user.id)
+  );
+  return filteredUsers;
+}
+
+let storyFull = await receiveStories();
+let profileSuggestions = await receiveSuggestions();
+console.log(profileSuggestions);
 
 const storyContainer = document.querySelector(".story-container");
 const storyView = document.querySelector(".story-full");
@@ -65,13 +67,14 @@ const rightArrow = document.querySelector(".right-arrow");
 const likeIcon = document.querySelector(".like-icon");
 const pauseIcon = document.querySelector(".pause-icon");
 const closeBtn = document.querySelector(".story-full .close-btn");
-// const profileFlex = document.querySelector(".profile-flex");
-// const profile = document.querySelector(".profile");
-// const profileInfo = document.querySelector(".profile-info");
+const sideBarLinks = document.querySelector(".link");
+const topNavbarRight = document.querySelector(".top-navbar-right");
+const topNavbarLogo = document.querySelector(".top-navbar-logo");
 
 let CurrentIndex = 0;
 let intervalId;
 let isPaused = false;
+let visitedStories = [];
 
 const resetLikeIcon = () => {
   likeIcon.innerHTML =
@@ -135,6 +138,7 @@ const createLeftStoryDP = (leftIndex, position) => {
 };
 
 const updateStoryView = () => {
+  visitedStories.push(storyFull[CurrentIndex]);
   // Clear previous contents
   leftStoryBox.innerHTML = "";
   currentStoryBox.innerHTML = "";
@@ -146,7 +150,7 @@ const updateStoryView = () => {
   const leftStoryIndexTwo = CurrentIndex - 2;
   if (leftStoryTwo) {
     if (leftStoryTwo.isVideo) {
-      const video = document.createElement("video");
+      const video = document.createElement("iframe");
       video.setAttribute("src", leftStoryTwo.imageUrl);
       video.setAttribute("controls", "controls");
       leftStoryBoxTwo.appendChild(video);
@@ -188,12 +192,22 @@ const updateStoryView = () => {
     video.setAttribute("src", currentStory.imageUrl);
     video.setAttribute("allow", "autoplay");
     currentStoryBox.appendChild(video);
-    
   } else {
     const img = document.createElement("img");
     img.classList.add("story-image-class");
     img.setAttribute("src", currentStory.imageUrl);
     currentStoryBox.appendChild(img);
+  }
+
+  if (!storyFull[CurrentIndex].canShare) {
+    document.querySelector(".share-icon").style.visibility = "hidden";
+  } else {
+    document.querySelector(".share-icon").style.visibility = "visible";
+  }
+  if (!storyFull[CurrentIndex].canReply) {
+    document.querySelector(".story-reply-form").style.visibility = "hidden";
+  } else {
+    document.querySelector(".story-reply-form").style.visibility = "visible";
   }
 
   // Set right story
@@ -283,6 +297,11 @@ pauseIcon.addEventListener("click", () => {
   isPaused = !isPaused;
 });
 
+topNavbarLogo.addEventListener("click", () => {
+  document.querySelector(".top-navbar-array-down").style.display = "flex";
+  document.querySelector(".top-navbar-list").style.display = "block";
+});
+
 const myStory = document.querySelector(".my-story");
 const storyDP = document.querySelector(".story-view-dp");
 myStory.addEventListener("click", () => {
@@ -296,8 +315,15 @@ myStory.addEventListener("click", () => {
   updateProgressBar(); // Start progress bar for the first story
 });
 
+//setting logged in user details in profile suggestions
 
-const profileContainer = document.querySelector(".profile-container"); 
+document
+  .getElementById("logged-in-dp")
+  .setAttribute("src", user.profilePicture);
+document.getElementById("logged-in-username").innerHTML = user.username;
+document.getElementById("logged-in-fullname").innerHTML = user.fullName;
+
+const profileContainer = document.querySelector(".profile-container");
 profileSuggestions.forEach((item) => {
   // Create the outer container
   const profileFlex = document.createElement("div");
@@ -309,7 +335,7 @@ profileSuggestions.forEach((item) => {
 
   // Create and set the profile picture
   const suggestionsDP = document.createElement("img");
-  suggestionsDP.setAttribute("src", item.profileSuggestionsDP);
+  suggestionsDP.setAttribute("src", item.profilePicture);
   suggestionsDP.setAttribute("alt", "Profile Picture");
 
   // Create the profile info section
@@ -318,7 +344,7 @@ profileSuggestions.forEach((item) => {
 
   // Create and set the username
   const username = document.createElement("strong");
-  username.textContent = item.profileSuggestionsUsername;
+  username.textContent = item.username;
 
   // Create and set the name
   const profileInfoName = document.createElement("span");
@@ -346,7 +372,17 @@ profileSuggestions.forEach((item) => {
   profileContainer.appendChild(profileFlex);
 });
 
-
+sideBarLinks.addEventListener("click", () => {
+  if (likeIcon.getAttribute("fill") !== "none") {
+    likeIcon.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 custom-svg-size like-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>';
+    likeIcon.setAttribute("fill", "none");
+  } else {
+    likeIcon.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" fill="#ff3d47" viewBox="0 0 512 512"><path fill="#ff3d47" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
+    likeIcon.setAttribute("fill", "#ff3d47");
+  }
+});
 
 storyFull.forEach((elements, i) => {
   const story = document.createElement("div");
@@ -384,4 +420,17 @@ storyFull.forEach((elements, i) => {
 closeBtn.addEventListener("click", () => {
   storyView.classList.remove("active");
   pauseInterval();
+  processVisitedStories();
 });
+
+async function processVisitedStories() {
+  for (const elements of visitedStories) {
+    try {
+      const setVisited = await updateVisitedStatus(elements.id);
+      console.log(setVisited);
+      console.log("setVisited");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
