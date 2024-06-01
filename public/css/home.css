@@ -132,6 +132,12 @@ html, body {
   padding: 0rem 0rem;
   overflow-x: auto;
   gap: 1rem;
+  transition: transform 0.5s ease; /* Add transition for smooth animation */
+  transform-origin: center center;
+}
+
+.story-container.zoom {
+  transform: scale(1.1); /* Increase the scale to zoom in */
 }
 
 .add-story{
@@ -176,6 +182,13 @@ html, body {
   );
   padding: 2px;
 }
+.gradient-border img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--white);
+}
 
 .gradient-border-grey {
   width: 70px;
@@ -189,19 +202,11 @@ html, body {
 }
 
 .gradient-border-grey img{
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--black);
-}
-
-.gradient-border img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--white);
 }
 
 .custom-svg-size {
@@ -549,8 +554,9 @@ input[type="text"] {
   margin-top: 20px !important;
 }
 
+
 /* Responsive Styles */
-@media screen and (max-width: 1100px) {
+ @media screen and (max-width: 1100px) {
   .profile-suggestion {
     display: none;
   }
@@ -562,29 +568,29 @@ input[type="text"] {
 
   .story-reply-form {
     font-size: 15px;
-    bottom: 10%;
-    left: 50%;
+    bottom: 120px;
+    left: 540px;
     transform: translateX(-80%);
   }
 
   .bottom-icons {
     width: 60px;
-    bottom: 7%;
-    left: 49%;
+    bottom: 100px;
+    left: 540px;
     transform: translateX(140%);
   }
 
   .top-left-story {
-    top: 9%;
-    left: 31%;
+    top: 120px;
+    left: 350px;
     transform: translateX(40%);
   }
 
   .top-of-story {
     width: 80px;
     height: 50px;
-    top: 9%;
-    right: 50%;
+    top: 120px;
+    left: 450px;
     transform: translateX(200%);
   }
   .top-left-story img {
@@ -621,7 +627,7 @@ input[type="text"] {
   .link a {
     display: none;
   }
-  .logo {
+  .logo{
     display: none;
   }
   .logo2 {
@@ -645,29 +651,29 @@ input[type="text"] {
   }
   .bottom-icons {
     width: 60px;
-    bottom: 10%;
-    left: 50%;
+    bottom: 100px;
+    left: 500px;
     transform: translateX(120%);
   }
   .top-left-story {
-    top: 10%;
-    left: 48%;
+    top: 115px;
+    left: 480px;
     transform: translateX(-130%);
   }
 
   .top-of-story {
-    width: 80px;
-    height: 50px;
-    top: 11%;
-    right: 47%;
+    width: 60px;
+    height: 30px;
+    top: 115px;
+    left: 480px;
     transform: translateX(150%);
   }
  
 
   .story-reply-form {
     font-size: 15px;
-    bottom: 14%;
-    left: 50%;
+    bottom: 120px;
+    left: 500px;
     transform: translateX(-70%);
   }
   .progress-container {
@@ -679,6 +685,12 @@ input[type="text"] {
   .story-box {
     width: 300px;
     height: 530px;
+  }
+  .story-full-logo {
+    position: fixed;
+    left: 0px;
+    top: 0;
+    width: 130px;
   }
 }
 
@@ -692,6 +704,23 @@ input[type="text"] {
   }
   .profile-suggestion {
     display: none;
+  }
+  .top-navbar-list-one{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .top-navbar-list-two{
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+  .top-navbar-list{
+    display: none;
+    margin-top: 100px;
+    background-color: var(--pureWhite);
+    transform: translateX(-200px);
+    box-shadow: 0 8px 8px rgba(150, 149, 149, 0.1);
   }
   .story-container {
       width: 80vw;
@@ -754,6 +783,15 @@ input[type="text"] {
     margin-top: 0;
     margin-left: 0;
    }
+   .top-navbar-right{
+    display: flex;
+    justify-content: flex-start;
+   }
+   .top-navbar-right svg{
+    display: none;
+    margin-top: 10px;
+    margin-left: 5px;
+   }
   .story-post-container {
     left: 0;
     margin-top: 90px;
@@ -767,21 +805,21 @@ input[type="text"] {
   .bottom-icons {
     width: 60px;
     height: 30px;
-    bottom: 5%;
-    left: 50%;
+    bottom: 110px;
+    left: 405px;
     transform: translateX(70%);
   }
   .top-left-story {
-    top: 5.5%;
-    left: 45%;
+    top: 109px;
+    left: 342px;
     transform: translateX(-110%);
   }
 
   .top-of-story {
     width: 50px;
     height: 30px;
-    top: 5.5%;
-    right: 47%;
+    top: 109px;
+    left: 350px;
     transform: translateX(200%);
   }
   .story-username {
@@ -798,8 +836,8 @@ input[type="text"] {
   
   .story-reply-form {
     font-size: 12px;
-    bottom: 6%;
-    left: 49%;
+    bottom: 115px;
+    left: 360px;
     transform: translateX(-75%);
   }
     .progress-container {
@@ -819,4 +857,4 @@ input[type="text"] {
     display: flex;
     justify-content: center;
   }
-}
+} 

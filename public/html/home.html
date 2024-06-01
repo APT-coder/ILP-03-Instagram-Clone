@@ -40,61 +40,61 @@
     <!-- --------------------sidebar----------------- -->
     <div class="sidebar">
       <div class="top-container">
-        <img class="logo" src="../assets/home/logo.png" />
+        <img class="logo" onclick="navigateTo('../html/home.html')" src="../assets/home/logo.png" />
         <img
           class="logo2"
           src="../assets/home/instagram (1).png"
         />
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/home.html')">
           <img
             src="../assets/home/homelight.png"
             style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Home</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/search.html')">
           <img
             src="../assets/home/search.png"
             style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Search</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/explore.html')">
           <img
             src="../assets/home/compass.png"
             style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="../html/explore.html">Explore</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/reels.html')">
           <img
             src="../assets/home/video.png"
             style="height: 1.4rem; margin-right: 0.9rem"
           />
           <a href="../html/reels.html">Reels</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/messages.html')">
           <img
             src="../assets/home/messengerlight.png"
             style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Messages</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/notifications.html')">
           <img
             src="../assets/home/love.png"
             style="height: 1.5rem; margin-right: 0.9rem"
           />
           <a href="#">Notifications</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/createPost.html')">
           <img
             src="../assets/home/tab.png"
             style="height: 1.5rem; margin-right: 0.9rem"
           />
           <a href="../html/createPost.html">Create</a>
         </div>
-        <div class="link profile-sidebar">
+        <div class="link profile-sidebar" onclick="navigateTo('../html/userAccount.html')">
           <img
             src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
             style="height: 1.5rem; margin-right: 0.9rem"
@@ -103,6 +103,7 @@
         </div>
       </div>
       <div class="bottom-container">
+        
         <div class="link">
           <img
             src="../assets/home/menulighgt.png"
@@ -114,7 +115,21 @@
     </div>
     <!-- --------nav for very small screen----------- -->
     <div class="top-navbar">
-      <img class="logo top-navbar-logo" src="../assets/home/logo.png" />
+      <div class="top-navbar-right">
+        <img class="logo top-navbar-logo" src="../assets/home/logo.png" />
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="size-6 custom-svg-size top-navbar-array-down"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style> </defs> <title></title> <g id="chevron-bottom"> <line class="cls-1" x1="16" x2="7" y1="20.5" y2="11.5"></line> <line class="cls-1" x1="25" x2="16" y1="11.5" y2="20.5"></line> </g> </g></svg>
+      </div>
+      <div class="top-navbar-list">
+        <div class="top-navbar-list-one">
+          <a class="dropdown-item" href="#">Following</a>
+          <img src="../assets/home/star-empty-icon.svg" style="height: 20px;">
+        </div>
+        <hr>
+        <div class="top-navbar-list-two">
+          <a class="dropdown-item" href="#">Favourites .</a>
+          <i class="fa-solid fa-user-group"></i>
+        </div>
+      </div>
       <div class="top-navbar-left">
         <div class="input-group rounded">
           <span class="input-group-text border-0" id="search-addon">
@@ -184,12 +199,12 @@
         <div class="profile-flex">
           <div class="profile">
             <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
               alt="Profile Picture"
+              id="logged-in-dp"
             />
             <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
+              <strong id="logged-in-username"></strong>
+              <span class="profile-info-name" id="logged-in-fullname"></span>
             </div>
           </div>
           <div class="switch">Switch</div>
@@ -220,7 +235,7 @@
     </div>
     <!-- -----------story-listing----------- -->
     <div class="story-full">
-      <img class="logo story-full-logo" src="../assets/home/instagram-white-logo.svg" />
+      <img class="logo story-full-logo" onclick="navigateTo('../html/home.html')" src="../assets/home/instagram-white-logo.svg" />
       <div class="close-btn">
         <a href="../html/home.html">
             <svg
@@ -304,7 +319,7 @@
                   stroke-linejoin="round"
                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
               </svg>
-              <svg fill="#ffffff" width="167px" height="167px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00032" class="custom-svg-size like-icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M31.376 0c-0.191 0-0.422 0.054-0.691 0.168l-29.833 12.659c-1.074 0.456-1.142 1.334-0.151 1.951l8.43 5.251c0.991 0.617 2.301 1.94 2.912 2.939l5.053 8.274c0.29 0.474 0.64 0.71 0.977 0.71 0.372 0 0.727-0.286 0.97-0.851l12.758-29.805c0.345-0.808 0.148-1.296-0.426-1.297zM10.174 18.248l-6.833-4.257 22.925-9.726-14.756 15.006c-0.451-0.4-0.909-0.757-1.337-1.023zM17.898 28.602l-4.076-6.672c-0.241-0.394-0.558-0.814-0.912-1.231l14.825-15.075z"></path> </g></svg>
+              <svg fill="#ffffff" width="167px" height="167px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00032" class="custom-svg-size share-icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M31.376 0c-0.191 0-0.422 0.054-0.691 0.168l-29.833 12.659c-1.074 0.456-1.142 1.334-0.151 1.951l8.43 5.251c0.991 0.617 2.301 1.94 2.912 2.939l5.053 8.274c0.29 0.474 0.64 0.71 0.977 0.71 0.372 0 0.727-0.286 0.97-0.851l12.758-29.805c0.345-0.808 0.148-1.296-0.426-1.297zM10.174 18.248l-6.833-4.257 22.925-9.726-14.756 15.006c-0.451-0.4-0.909-0.757-1.337-1.023zM17.898 28.602l-4.076-6.672c-0.241-0.394-0.558-0.814-0.912-1.231l14.825-15.075z"></path> </g></svg>
             </div>
           </div>
           <div class="story-top-header">
@@ -353,6 +368,11 @@
     </div>
     <!-- ----------------------------------- -->
   </body>
+  <script>
+    function navigateTo(url) {
+    window.location.href = url;
+  }
+  </script>
   <script type="module" src="../js/home.js"></script>
   <script type="module" src="../js/apiFetch.js"></script>
 
