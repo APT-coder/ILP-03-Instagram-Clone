@@ -110,28 +110,6 @@ export async function fetchStoryById(storyId) {
   }
 }
 
-export async function updateVisitedStatus(storyId) {
-  try {
-    const response = await fetch(`${API_URL}/stories/${storyId}`, {
-      method: 'PATCH', // JSON Server uses PATCH for updates
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ visited: true })
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to update visited status');
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error updating visited status:', error);
-    throw error;
-  }
-}
-
 // Fetch all reels
 export async function fetchReels() {
   try {
@@ -151,6 +129,16 @@ export async function fetchReelById(reelId) {
     return reel;
   } catch (error) {
     console.error(`Error fetching reel with ID ${reelId}:`, error);
+  }
+}
+
+export async function fetchExplore() {
+  try {
+    const response = await fetch(`${API_URL}/explore`);
+    const explore = await response.json();
+    return explore;
+  } catch (error) {
+    console.error('Error fetching explore:', error);
   }
 }
 
@@ -175,3 +163,114 @@ export async function fetchMessageById(messageId) {
     console.error(`Error fetching message with ID ${messageId}:`, error);
   }
 }
+
+export async function updateVisitedStatus(storyId) {
+  try {
+    const response = await fetch(`${API_URL}/stories/${storyId}`, {
+      method: 'PATCH', // JSON Server uses PATCH for updates
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ visited: true })
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update visited status');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating visited status:', error);
+    throw error;
+  }
+}
+
+export async function updateUserFollowing(userId, followUserId) {
+  try {
+    // Fetch current user data
+    const userResponse = await fetch(`${API_URL}/users/${userId}`);
+    
+    if (!userResponse.ok) {
+      throw new Error('Failed to fetch user data');
+    }
+    
+    const userData = await userResponse.json();
+
+    // Check if the followUserId is already in the following list
+    if (!userData.following.includes(followUserId)) {
+      // Append followUserId to the following list
+      userData.following.push(followUserId);
+    }
+
+    // Update the user's following list
+    const updateResponse = await fetch(`${API_URL}/users/${userId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ following: userData.following })
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error('Failed to update following list');
+    }
+
+    const data = await updateResponse.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating following list:', error);
+    throw error;
+  }
+}
+
+export async function addCommentToPost(postId, userId, text) {
+  try {
+    // Fetch current comments
+    const commentsResponse = await fetch(`${API_URL}/comments`);
+    
+    if (!commentsResponse.ok) {
+      throw new Error('Failed to fetch comments');
+    }
+    
+    const commentsData = await commentsResponse.json();
+
+    // Generate a new comment id based on the current comments length
+    const newCommentId = commentsData.length ? commentsData[commentsData.length - 1].id + 1 : 1;
+
+    // Get the current date and time
+    const timestamp = new Date().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+    // Create a new comment object
+    const newComment = {
+      id: newCommentId,
+      postId: postId,
+      userId: userId,
+      text: text,
+      timestamp: timestamp
+    };
+
+    // Append the new comment to the comments list
+    commentsData.push(newComment);
+
+    // Update the comments list on the server
+    const updateResponse = await fetch(`${API_URL}/comments`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentsData)
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error('Failed to update comments list');
+    }
+
+    const data = await updateResponse.json();
+    return data;
+  } catch (error) {
+    console.error('Error adding comment:', error);
+    throw error;
+  }
+}
+
