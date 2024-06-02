@@ -66,6 +66,18 @@ export async function fetchCommentById(commentId) {
   }
 }
 
+export async function fetchCommentsByPostId(postId) {
+  try {
+    const comments = await fetch(`${API_URL}/comments?postId=${postId}`);
+    console.log(comments)
+    return comments;
+
+  } catch (error) {
+    console.error(`Error fetching comments for post with ID ${postId}:`, error);
+  }
+}
+
+
 // Fetch all likes
 export async function fetchLikes() {
   try {

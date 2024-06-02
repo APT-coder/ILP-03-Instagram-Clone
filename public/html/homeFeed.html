@@ -33,6 +33,7 @@
       rel="stylesheet"
     />
     <title>Instagram</title>
+    
   </head>
 
   <body id="body">
@@ -162,272 +163,28 @@
       <a href="">See all</a>
   </div>
   <div class="suggestion">
-     <div class="suggest">
-        <div class="suggestion-card">
-           <div class="suggest-cross">
-            <i class="bi bi-x-lg"></i>
-           </div>
-          <div class="details">
-             <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5rem;width:5rem">
-             <p class="detail-name">Username</p>
-             <p class="detail-by">Followed by</p>
-             <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:1.25rem;width:1.25rem">  
-          </div>
-       </div> 
-       <hr/>
-       <div class="suggest-follow"  onclick="following(this)">
-           Follow
-       </div>
-     </div>
+     
      <!-- -------- --> 
+     <div id="overlay"></div> 
      <div id="suggest-card"  class="suggest-card" style="height:18.75rem;width: 25rem;padding:0;">
       <div class="suggest-confirmation" style="height:170px;width:380px;">
         <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5.625rem;width:5.625rem; border-radius:50%;">
         <p>Unfollow mr_username?</p>
       </div>
       <hr/>
-      <div class="suggest-unfollow" id="suggest-unfollow">Unfollow</div>
+      <div class="suggest-unfollow" id="suggest-unfollow" onclick="unfollow()">Unfollow</div>
       <hr/>
-      <div class="suggest-cancel" id="suggest-cancel">Cancel</div>
+      <div class="suggest-cancel" id="suggest-cancel" onclick="cancel()">Cancel</div>
     </div>
     <!-- --------- -->
-     <div class="suggest">
-       <div class="suggestion-card">
-          <div class="suggest-cross">
-           <i class="bi bi-x-lg"></i>
-          </div>
-          <div class="details">
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5rem;width:5rem">
-           <p class="detail-name">Username</p>
-           <p class="detail-by">Followed by</p>
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:1.25rem;width:1.25rem">  
-        </div>
-      </div> 
-      <hr/>
-      <div class="suggest-follow"  onclick="following(this)">
-          Follow
-      </div>
-       
-    </div>
-    <div class="suggest">
-       <div class="suggestion-card">
-          <div class="suggest-cross">
-           <i class="bi bi-x-lg"></i>
-          </div>
-          <div class="details">
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5rem;width:5rem">
-           <p class="detail-name">Username</p>
-           <p class="detail-by">Followed by</p>
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:1.25rem;width:1.25rem">  
-        </div>
-      </div> 
-      <hr/>
-      <div class="suggest-follow"  onclick="following(this)">
-          Follow
-      </div>
-       
-    </div>
-    <div class="suggest">
-       <div class="suggestion-card">
-          <div class="suggest-cross">
-           <i class="bi bi-x-lg"></i>
-          </div>
-          <div class="details">
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5rem;width:5rem">
-           <p class="detail-name">Username</p>
-           <p class="detail-by">Followed by</p>
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:1.25rem;width:1.25rem">  
-        </div>
-      </div> 
-      <hr/>
-      <div class="suggest-follow"  onclick="following(this)">
-          Follow
-      </div>
-       
-    </div>
-    <div class="suggest">
-       <div class="suggestion-card">
-          <div class="suggest-cross">
-           <i class="bi bi-x-lg"></i>
-          </div>
-          <div class="details">
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5rem;width:5rem">
-           <p class="detail-name">Username</p>
-           <p class="detail-by">Followed by</p>
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:1.25rem;width:1.25rem">  
-        </div>
-      </div> 
-      <hr/>
-      <div class="suggest-follow"  onclick="following(this)">
-        Follow
-    </div>
-    </div>
+     
   </div>
   
 </div>
 <div class="hr"><hr/></div>
 <!-- --------- -->
 <div class="post-container">
-   <div class="post">
-     <div class="post-header">
-       <div class="post-detail">
-           <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png">
-           <p>Username</p>
-           <ul>
-               <li>8hrs</li>
-           </ul>
-       </div>
-       <i class="fas fa-ellipsis-h dots"></i>
-     </div>
-     <div class="post-content">
-       <img src="../assets/homeFeed/img12.png">
-     </div>
-     <div class="post-icons">
-       <div class="left-icons">
-           <i class="bi bi-heart post-icon"></i>    
-           <i class="bi bi-chat post-icon" style="transform:scaleX(-1)"></i>
-           <i class="bi bi-send post-icon"></i>
-       </div>
-         <div class="left-end "><i class="bi bi-bookmark post-icon"></i></div>
-     </div>
-     <p class="likes">100 likes</p>
-       <p class="caption"><span>@Username</span> caption goes here</p>
-       <p class="translation">See translation</p>
-       <a href="#" class="comments">View all comments</a>
-       <div class="comment-smiley">
-        <p class="addComment">Add a comment...</p>
-        <i class="fa-regular fa-face-smile fa-xs" style="color: #878c94; padding-top:1.063rem;"></i>
-       </div>
-        <hr/>
-  </div>
-  <div class="post">
-   <div class="post-header">
-     <div class="post-detail">
-         <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png">
-         <p>Username</p>
-         <ul>
-             <li>8hrs</li>
-         </ul>
-     </div>
-     <i class="fas fa-ellipsis-h dots"></i>
-   </div>
-   <div class="post-content">
-     <img src="../assets/homeFeed/img123.png">
-   </div>
-   <div class="post-icons">
-     <div class="left-icons">
-         <i class="bi bi-heart post-icon"></i>
-         <i class="bi bi-chat post-icon" style="transform:scaleX(-1)"></i>
-         <i class="bi bi-send post-icon"></i>
-     </div>
-     <div class="left-end "><i class="bi bi-bookmark post-icon"></i></div>
-   </div>
-   <p class="likes">100 likes</p>
-     <p class="caption"><span>@Username</span> caption goes here</p>
-     <p class="translation">See translation</p>
-     <a href="#" class="comments">View all comments</a>
-     <div class="comment-smiley">
-      <p class="addComment">Add a comment...</p>
-      <i class="fa-regular fa-face-smile fa-xs" style="color: #878c94; padding-top:1.063rem;"></i>
-     </div>
-      <hr/>
-</div>
-<div class="post">
-   <div class="post-header">
-     <div class="post-detail">
-         <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png">
-         <p>Username</p>
-         <ul>
-             <li>8hrs</li>
-         </ul>
-     </div>
-     <i class="fas fa-ellipsis-h dots"></i>
-   </div>
-   <div class="post-content">
-     <img src="../assets/homeFeed/img123.png">
-   </div>
-   <div class="post-icons">
-     <div class="left-icons">
-         <i class="bi bi-heart post-icon"></i>
-         <i class="bi bi-chat post-icon" style="transform:scaleX(-1)"></i>
-         <i class="bi bi-send post-icon"></i>
-     </div>
-     <div class="left-end "><i class="bi bi-bookmark post-icon"></i></div>
-   </div>
-   <p class="likes">100 likes</p>
-     <p class="caption"><span>@Username</span> caption goes here</p>
-     <p class="translation">See translation</p>
-     <a href="#" class="comments">View all comments</a>
-     <div class="comment-smiley">
-      <p class="addComment">Add a comment...</p>
-      <i class="fa-regular fa-face-smile fa-xs" style="color: #878c94; padding-top:1.063rem;"></i>
-     </div>
-      <hr/>
-</div>
-<div class="post">
-   <div class="post-header">
-     <div class="post-detail">
-         <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png">
-         <p>Username</p>
-         <ul>
-             <li>8hrs</li>
-         </ul>
-     </div>
-     <i class="fas fa-ellipsis-h dots"></i>
-   </div>
-   <div class="post-content">
-     <img src="../assets/homeFeed/img123.png">
-   </div>
-   <div class="post-icons">
-     <div class="left-icons">
-         <i class="bi bi-heart post-icon"></i>
-         <i class="bi bi-chat post-icon" style="transform:scaleX(-1)"></i>
-         <i class="bi bi-send post-icon"></i>
-     </div>
-     <div class="left-end"><i class="bi bi-bookmark  post-icon"></i></div>
-   </div>
-   <p class="likes">100 likes</p>
-     <p class="caption"><span>@Username</span> caption goes here</p>
-     <p class="translation">See translation</p>
-     <a href="#" class="comments">View all comments</a>
-     <div class="comment-smiley">
-      <p class="addComment">Add a comment...</p>
-      <i class="fa-regular fa-face-smile fa-xs" style="color: #878c94; padding-top:1.063rem;"></i>
-     </div>
-      <hr/>
-</div>
-<div class="post">
-   <div class="post-header">
-     <div class="post-detail">
-         <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png">
-         <p>Username</p>
-         <ul>
-             <li>8hrs</li>
-         </ul>
-     </div>
-     <i class="fas fa-ellipsis-h dots"></i>
-   </div>
-   <div class="post-content">
-     <img src="../assets/homeFeed/img12.png">
-   </div>
-   <div class="post-icons">
-     <div class="left-icons">
-         <i class="bi bi-heart post-icon"></i>
-         <i class="bi bi-chat post-icon" style="transform:scaleX(-1)"></i>
-         <i class="bi bi-send post-icon"></i>
-     </div>
-     <div class="left-end "><i class="bi bi-bookmark post-icon"></i></div>
-   </div>
-   <p class="likes">100 likes</p>
-     <p class="caption"><span>@Username</span> caption goes here</p>
-     <p class="translation">See translation</p>
-     <a href="#" class="comments">View all comments</a>
-     <div class="comment-smiley">
-      <p class="addComment">Add a comment...</p>
-      <i class="fa-regular fa-face-smile fa-xs" style="color: #878c94; padding-top:1.25rem;"></i>
-     </div>
-      <hr/>
-</div>
+   
 </div>
 <!-- ------post----- -->
         <!-- -------------------------------------------- -->
@@ -694,5 +451,6 @@
     </div>
     <!-- ----------------------------------- -->
   </body>
-  <script src="../js/homeFeed.js"></script>
+  <script type="module" src="../js/homeFeed.js"></script>
+  <script type="module" src="../js/apiFetch.js"></script>
 </html>
