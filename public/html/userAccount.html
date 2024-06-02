@@ -159,7 +159,7 @@
       
 
       <!-- Posts container -->
-      <div id="posts-container" class="row">
+      <div id="posts-container" class="row m-0">
         <!-- Posts will be dynamically added here -->
       </div>
 
@@ -174,7 +174,7 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog mxw-80 modal-dialog-centered modal-lg"
+          class="modal-dialog mxw-80 "
           role="document"
         >
           <div class="modal-content">
@@ -207,21 +207,29 @@
                   </div>
                 </div>
                 <hr />
-                <div class="comment-section mr-2 d-flex">
-                  <div class="mr-3">
-                    <img
-                      src=""
-                      alt=""
-                      id="modal-profile-picture-comments"
-                      class="profile-picture-size rounded-circle"
-                    />
+                <div class="comment-section mr-2 d-flex flex-column ">
+                  <div class="d-flex mb-3">
+                    <div class="mr-3">
+                      <img
+                        src=""
+                        alt=""
+                        id="modal-profile-picture-comments"
+                        class="profile-picture-size rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <span
+                        id="comment-section-username"
+                        class="fs-14 fw-600 mb-0"
+                      ></span>
+                      <span id="modal-post-caption" class="fs-14"></span>
+                    </div>
                   </div>
-                  <div>
-                    <span
-                      id="comment-section-username"
-                      class="fs-14 fw-600 mb-0"
-                    ></span>
-                    <span id="modal-post-caption" class="fs-14"></span>
+                  <div id="hashTags">
+                    
+                  </div>
+                  <div id="user-comments" class="mr-3 d-flex flex-column">
+                    
                   </div>
                 </div>
                 <hr />
@@ -391,7 +399,9 @@
               </div>
 
               <!-- Followers List -->
-              <div class="followers-list"></div>
+              <div id="followers-list" class=" overflow-auto">
+
+              </div>
             </div>
           </div>
         </div>
@@ -436,8 +446,10 @@
                 />
               </div>
 
-              <!-- Followers List -->
-              <div class="followers-list"></div>
+              <!-- Following List -->
+              <div id="following-list" class=" overflow-auto">
+
+              </div>
             </div>
           </div>
         </div>
@@ -447,6 +459,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/userAccount.js"></script>
+    <script type="module" src="../js/apiFetch.js"></script>
+    <script type= "module" src="../js/userAccount.js"></script>
   </body>
 </html>
