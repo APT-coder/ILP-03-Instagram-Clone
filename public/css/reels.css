@@ -35,7 +35,7 @@
   border-radius: 5px;
 }
 
-.container .reels_videos .video video {
+.container .reels_videos .video iframe {
   width: 326.531px;
   height: 580.5px;
   object-fit: cover;
