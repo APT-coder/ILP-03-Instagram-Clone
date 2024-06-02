@@ -206,6 +206,9 @@ a {
 /* modal styling */
 #modal-post {
   padding: 0;
+  display: flex;
+  background-color: #000;
+  justify-content: center;
 }
 
 #modal-post img {
@@ -214,21 +217,16 @@ a {
 
 .comment-section {
   height: 50%;
+  overflow: auto;
+ 
 }
 
 .profile-picture-size {
   width: 42px;
 }
-@media (max-width: 1140px) {
-  .comment-section {
-    height: 35%;
-  }
-}
 
-@media (max-width: 950px) {
-  .comment-section {
-    height: 28%;
-  }
+.comment-section::-webkit-scrollbar {
+  display: none; 
 }
 
 /* like button  */
