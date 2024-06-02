@@ -3,12 +3,14 @@ import {
   fetchUserById,
   fetchUsers,
   updateVisitedStatus,
+  updateUserFollowing,
 } from "../js/apiFetch.js";
 
-// const username = localStorage.getItem("username");
-const username = "thulasi";
+//const usermail = localStorage.getItem("usermail");
+const usermail = "thulasi.k@gmail.com";
 const userData = await fetchUsers();
-let user = userData.find((user) => user.username === username);
+let user = userData.find((user) => user.email === usermail);
+const username = user.username;
 
 async function receiveStories() {
   const data = await fetchStories();
@@ -49,9 +51,12 @@ async function receiveSuggestions() {
   return filteredUsers;
 }
 
+async function updateFollowing(userId, followUserId) {
+  const success = await updateUserFollowing(userId, followUserId);
+}
+
 let storyFull = await receiveStories();
 let profileSuggestions = await receiveSuggestions();
-console.log(profileSuggestions);
 
 const storyContainer = document.querySelector(".story-container");
 const storyView = document.querySelector(".story-full");
@@ -68,8 +73,10 @@ const likeIcon = document.querySelector(".like-icon");
 const pauseIcon = document.querySelector(".pause-icon");
 const closeBtn = document.querySelector(".story-full .close-btn");
 const sideBarLinks = document.querySelector(".link");
-const topNavbarRight = document.querySelector(".top-navbar-right");
 const topNavbarLogo = document.querySelector(".top-navbar-logo");
+const topNavbarArrayDown = document.querySelector(".top-navbar-array-down");
+const topNavbarList = document.querySelector(".top-navbar-list");
+const profileSidebarImage = document.querySelector(".profile-sidebar-image");
 
 let CurrentIndex = 0;
 let intervalId;
@@ -161,7 +168,7 @@ const updateStoryView = () => {
     }
     const storyNewTwo = createLeftStoryDP(leftStoryIndexTwo, 0);
     leftStoryBoxTwo.appendChild(storyNewTwo);
-    storyNewTwo.classList.add(".left-story-dp");
+    storyNewTwo.classList.add(".left-story-dp", "story-transition-enter-left");
   }
 
   const leftStory = storyFull[CurrentIndex - 1];
@@ -179,7 +186,7 @@ const updateStoryView = () => {
     }
     const storyNew = createLeftStoryDP(leftStoryIndex, 0);
     leftStoryBox.appendChild(storyNew);
-    storyNew.classList.add(".left-story-dp");
+    storyNew.classList.add(".left-story-dp", "story-transition-enter-left");
   }
 
   // Set current story
@@ -226,7 +233,10 @@ const updateStoryView = () => {
     }
     const storyNewRight = createLeftStoryDP(rightStoryIndex, 1);
     rightStoryBox.appendChild(storyNewRight);
-    storyNewRight.classList.add(".left-story-dp");
+    storyNewRight.classList.add(
+      ".left-story-dp",
+      "story-transition-enter-left"
+    );
   }
   if (CurrentIndex < storyFull.length - 1) {
     const rightStoryTwo = storyFull[CurrentIndex + 2];
@@ -243,28 +253,68 @@ const updateStoryView = () => {
     }
     const storyNewRightTwo = createLeftStoryDP(rightStoryIndexTwo, 1);
     rightStoryBoxTwo.appendChild(storyNewRightTwo);
-    storyNewRightTwo.classList.add(".left-story-dp");
+    storyNewRightTwo.classList.add(
+      ".left-story-dp",
+      "story-transition-enter-left"
+    );
   }
 };
 
 const nextStory = () => {
   if (CurrentIndex < storyFull.length - 1) {
     CurrentIndex += 1;
+    const currentStoryElement = currentStoryBox.querySelector("img, iframe");
+    currentStoryElement.classList.add("story-transition-exit-left");
+    currentStoryElement.addEventListener(
+      "animationend",
+      () => {
+        const newCurrentStoryElement =
+          currentStoryBox.querySelector("img, iframe");
+        newCurrentStoryElement.classList.add(".story-transition-enter-left");
+        currentStoryElement.classList.remove("story-transition-exit-left");
+        const leftStoryElement = leftStoryBox.querySelector("img, iframe");
+        if (leftStoryElement)
+          leftStoryElement.classList.add("story-transition-enter-right");
+        const rightStoryElement = rightStoryBox.querySelector("img, iframe");
+        if (rightStoryElement)
+          rightStoryElement.classList.add("story-transition-enter-right");
 
-    updateStoryView();
-    resetLikeIcon();
-    resetPauseIcon();
-    updateProgressBar();
+        updateStoryView();
+        resetLikeIcon();
+        resetPauseIcon();
+        updateProgressBar();
+      },
+      { once: true }
+    );
   }
 };
 
 const prevStory = () => {
   if (CurrentIndex > 0) {
     CurrentIndex -= 1;
-    updateStoryView();
-    resetLikeIcon();
-    resetPauseIcon();
-    updateProgressBar();
+    const currentStoryElement = currentStoryBox.querySelector("img, iframe");
+    currentStoryElement.classList.add("story-transition-exit");
+    currentStoryElement.addEventListener(
+      "animationend",
+      () => {
+        const newCurrentStoryElement =
+          currentStoryBox.querySelector("img, iframe");
+        newCurrentStoryElement.classList.add("story-transition-enter");
+        currentStoryElement.classList.remove("story-transition-exit");
+        const leftStoryElement = leftStoryBox.querySelector("img, iframe");
+        if (leftStoryElement)
+          leftStoryElement.classList.add("story-transition-enter");
+        const rightStoryElement = rightStoryBox.querySelector("img, iframe");
+        if (rightStoryElement)
+          rightStoryElement.classList.add("story-transition-enter");
+
+        updateStoryView();
+        resetLikeIcon();
+        resetPauseIcon();
+        updateProgressBar();
+      },
+      { once: true }
+    );
   }
 };
 
@@ -298,8 +348,16 @@ pauseIcon.addEventListener("click", () => {
 });
 
 topNavbarLogo.addEventListener("click", () => {
-  document.querySelector(".top-navbar-array-down").style.display = "flex";
-  document.querySelector(".top-navbar-list").style.display = "block";
+  if (
+    topNavbarArrayDown.style.display === "none" ||
+    topNavbarArrayDown.style.display === ""
+  ) {
+    topNavbarArrayDown.style.display = "flex";
+    topNavbarList.style.display = "block";
+  } else {
+    topNavbarArrayDown.style.display = "none";
+    topNavbarList.style.display = "none";
+  }
 });
 
 const myStory = document.querySelector(".my-story");
@@ -312,63 +370,57 @@ myStory.addEventListener("click", () => {
     storyFull[0].profilePicUrl.username;
   startInterval();
   updateStoryView();
-  updateProgressBar(); // Start progress bar for the first story
+  updateProgressBar();
 });
-
-//setting logged in user details in profile suggestions
 
 document
   .getElementById("logged-in-dp")
   .setAttribute("src", user.profilePicture);
 document.getElementById("logged-in-username").innerHTML = user.username;
 document.getElementById("logged-in-fullname").innerHTML = user.fullName;
+profileSidebarImage.setAttribute("src", user.profilePicture);
 
 const profileContainer = document.querySelector(".profile-container");
 profileSuggestions.forEach((item) => {
-  // Create the outer container
   const profileFlex = document.createElement("div");
   profileFlex.classList.add("profile-flex");
 
-  // Create the profile section
   const profile = document.createElement("div");
   profile.classList.add("profile");
 
-  // Create and set the profile picture
   const suggestionsDP = document.createElement("img");
   suggestionsDP.setAttribute("src", item.profilePicture);
   suggestionsDP.setAttribute("alt", "Profile Picture");
 
-  // Create the profile info section
   const profileInfo = document.createElement("div");
   profileInfo.classList.add("profile-info");
 
-  // Create and set the username
   const username = document.createElement("strong");
   username.textContent = item.username;
 
-  // Create and set the name
   const profileInfoName = document.createElement("span");
   profileInfoName.classList.add("profile-info-name");
   profileInfoName.textContent = "Suggested for you";
 
-  // Append elements to profileInfo
   profileInfo.appendChild(username);
   profileInfo.appendChild(profileInfoName);
 
-  // Append elements to profile
   profile.appendChild(suggestionsDP);
   profile.appendChild(profileInfo);
 
-  // Create the switch button
   const switchBtn = document.createElement("div");
   switchBtn.classList.add("switch");
   switchBtn.textContent = "Follow";
 
-  // Append profile and switch button to profileFlex
+  switchBtn.addEventListener("click", () => {
+    if (updateFollowing(user.id, item.id)) {
+      switchBtn.textContent = "Following";
+    }
+  });
+
   profileFlex.appendChild(profile);
   profileFlex.appendChild(switchBtn);
 
-  // Append profileFlex to the container
   profileContainer.appendChild(profileFlex);
 });
 
@@ -427,8 +479,6 @@ async function processVisitedStories() {
   for (const elements of visitedStories) {
     try {
       const setVisited = await updateVisitedStatus(elements.id);
-      console.log(setVisited);
-      console.log("setVisited");
     } catch (error) {
       console.error(error);
     }

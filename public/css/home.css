@@ -197,13 +197,13 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--white);
+  background: var(--light-grey);
   padding: 2px;
 }
 
 .gradient-border-grey img{
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--black);
@@ -216,7 +216,7 @@ html, body {
 }
 
 .story-full {
-  background-color: #303030;
+  background-color: #000000;
   position: fixed;
   left: 0;
   top: 0;
@@ -439,6 +439,63 @@ input[type="text"] {
 .story-video-class {
   transition: opacity 0.3s ease-in-out; /* Add transition effect */
 }
+
+@keyframes comeFromLeftAndScaleUp {
+  from {
+    transform: translateX(100%) scale(0.8);    
+  }
+  to {
+    transform: translateX(0) scale(1);
+    
+  }
+}
+
+@keyframes comeFromLeftAndscaleDown {
+  from {
+    transform: translateX(100%) scale(1);    
+  }
+  to {
+    transform: translateX(0) scale(0.8);
+    
+  }
+}
+
+.story-transition-enter-left {
+  animation: comeFromLeftAndScaleUp 0.3s forwards;
+}
+
+.story-transition-exit-left {
+  animation: comeFromLeftAndscaleDown 0.3s forwards;
+}
+
+@keyframes comeFromRightAndScaleUp {
+  from {
+    transform: translateX(-100%) scale(0.8);    
+  }
+  to {
+    transform: translateX(0) scale(1);
+    
+  }
+}
+
+@keyframes comeFromRightAndscaleDown {
+  from {
+    transform: translateX(-100%) scale(1);    
+  }
+  to {
+    transform: translateX(0) scale(0.8);
+    
+  }
+}
+
+.story-transition-enter {
+  animation: comeFromRightAndScaleUp 0.3s forwards;
+}
+
+.story-transition-exit {
+  animation: comeFromRightAndscaleDown 0.3s forwards;
+}
+
 
 
 /* Profile Suggestion */
