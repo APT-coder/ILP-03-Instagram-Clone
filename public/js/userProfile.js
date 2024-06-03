@@ -80,11 +80,7 @@ async function recieveCommentData() {
 let userDetails = await receiveUserData();
 let postDetails = await recievePostData();
 let commentDetails = await recieveCommentData();
-console.log(userDetails);
-console.log(postDetails);
-console.log(commentDetails);
-
-const username = "thulasi";
+const username = localStorage.getItem("username");
 const result = findUserByUsername(username);
 
 function findUserByUsername(username) {
@@ -93,7 +89,7 @@ function findUserByUsername(username) {
       return i;
     }
   }
-  return null; // User not found
+  return null;
 }
 
 // // profile container fetch
@@ -134,8 +130,8 @@ storyHighlights.forEach((story) => {
 storyHighlightsContainer.appendChild(storyWrapper);
 
 // Scroll functionality
-const scrollAmount = 300; // Number of pixels to scroll
-const scrollDuration = 400; // Duration in ms for smooth scrolling
+const scrollAmount = 300;
+const scrollDuration = 400;
 
 function smoothScroll(element, amount, duration) {
   const start = element.scrollLeft;
@@ -257,9 +253,8 @@ function loadPosts(posts) {
       colDiv.appendChild(img);
       colDiv.appendChild(overlay);
       postsContainer.appendChild(colDiv);
-      console.log(post.id);
       colDiv.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevent any default action like a link click
+        event.preventDefault();
         try {
           openModal(post);
         } catch (error) {
@@ -357,12 +352,11 @@ function loadTaggedPosts(taggedPosts) {
 }
 
 function openModal(post) {
-  const postElement= document.getElementById("modal-post-image");
+  const postElement = document.getElementById("modal-post-image");
   postElement.src = post.imageUrl;
-   
-  if(postElement.height > postElement.width){
-    postElement.style.width = '70%';
-    
+
+  if (postElement.height > postElement.width) {
+    postElement.style.width = "70%";
   }
   document.getElementById("modal-profile-picture").src =
     userDetails[result].profilePicture;
@@ -419,7 +413,13 @@ function openModal(post) {
     const commentDiv = document.createElement("div");
     commentDiv.classList.add("my-2");
     const img = document.createElement("img");
-    const commentedUsername = document.createElement("span");
+    const commentedUsername = document.createElement("a");
+
+    commentedUsername.href = "./userProfile.html";
+    commentedUsername.addEventListener("click", function () {
+      localStorage.setItem("username", userDetails[commentedUserId].username);
+    });
+
     const comment = document.createElement("span");
     comment.classList.add("fs-14");
     commentedUsername.classList.add("fw-600", "fs-14", "mr-1");
@@ -427,9 +427,9 @@ function openModal(post) {
     img.src = userDetails[commentedUserId].profilePicture;
     commentedUsername.textContent = userDetails[commentedUserId].username;
     comment.textContent = commentDetails[commentId].text;
-    const commentReply=document.createElement("p");
-    commentReply.classList.add('text-muted' ,'fs-12', 'ml-5', 'pl-2');
-    commentReply.textContent="1w Reply"
+    const commentReply = document.createElement("p");
+    commentReply.classList.add("text-muted", "fs-12", "ml-5", "pl-2");
+    commentReply.textContent = "1w Reply";
     commentDiv.appendChild(img);
     commentDiv.appendChild(commentedUsername);
     commentDiv.appendChild(comment);
@@ -441,12 +441,11 @@ function openModal(post) {
 }
 
 function openModalSaved(post) {
-  const postElement= document.getElementById("modal-post-image");
+  const postElement = document.getElementById("modal-post-image");
   postElement.src = post.imageUrl;
-   
-  if(postElement.height > postElement.width){
-    postElement.style.width = '70%';
-    
+
+  if (postElement.height > postElement.width) {
+    postElement.style.width = "70%";
   }
   document.getElementById("modal-profile-picture").src =
     userDetails[post.userId - 1].profilePicture;
@@ -521,13 +520,13 @@ function openModalSaved(post) {
 function openModalTagged(post) {
   document.getElementById("modal-post-image").src = post.imageUrl;
   document.getElementById("modal-profile-picture").src =
-  userDetails[post.userId - 1].profilePicture;
+    userDetails[post.userId - 1].profilePicture;
   document.getElementById("modal-profile-picture-comments").src =
-  userDetails[post.userId - 1].profilePicture;
+    userDetails[post.userId - 1].profilePicture;
   document.getElementById("modal-username").textContent =
-  userDetails[post.userId - 1].username;
+    userDetails[post.userId - 1].username;
   document.getElementById("comment-section-username").textContent =
-  userDetails[post.userId - 1].username;
+    userDetails[post.userId - 1].username;
   document.getElementById("modal-post-caption").textContent =
     post.caption.stringValue;
   document.getElementById("liked-by-username").textContent = "thezahidx";
@@ -574,7 +573,11 @@ function openModalTagged(post) {
     const commentDiv = document.createElement("div");
     commentDiv.classList.add("my-2");
     const img = document.createElement("img");
-    const commentedUsername = document.createElement("span");
+    const commentedUsername = document.createElement("a");
+    commentedUsername.href = "./userProfile.html";
+    commentedUsername.addEventListener("click", function () {
+      localStorage.setItem("username", userDetails[commentedUserId].username);
+    });
     const comment = document.createElement("span");
     comment.classList.add("fs-14");
     commentedUsername.classList.add("fw-600", "fs-14", "mr-1");
@@ -592,38 +595,54 @@ function openModalTagged(post) {
   $("#postModal").modal("show");
 }
 
-// followers fetching 
+// followers fetching
 
 const followersListContainer = document.getElementById("followers-list");
-followersListContainer.innerHTML="";
-for(let i=0;i<userDetails[result].followers.length;i++){
-  for(let j=0;j<userDetails.length; j++){
-    if(userDetails[result].followers[i]==userDetails[j].id){
+followersListContainer.innerHTML = "";
+for (let i = 0; i < userDetails[result].followers.length; i++) {
+  for (let j = 0; j < userDetails.length; j++) {
+    if (userDetails[result].followers[i] == userDetails[j].id) {
+      const usernameAnchorElement = document.createElement("a");
+      usernameAnchorElement.href = "./userProfile.html";
+      usernameAnchorElement.addEventListener("click", function (event) {
+        // event.preventDefault(); // Prevent the default anchor behavior
+        localStorage.setItem("username", userDetails[j].username);
+      });
       const followersList = document.createElement("div");
-      followersList.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'my-2');
+      followersList.classList.add(
+        "d-flex",
+        "justify-content-between",
+        "align-items-center",
+        "my-2"
+      );
       const followersProfilePic = document.createElement("img");
-      followersProfilePic.classList.add('profile-picture-size', 'rounded-circle' ,'mr-3');
-      followersProfilePic.src= userDetails[j].profilePicture;
-      followersProfilePic.alt= userDetails[j].fullName;
+      followersProfilePic.classList.add(
+        "profile-picture-size",
+        "rounded-circle",
+        "mr-3"
+      );
+      followersProfilePic.src = userDetails[j].profilePicture;
+      followersProfilePic.alt = userDetails[j].fullName;
       const usernameElement = document.createElement("p");
-      usernameElement.textContent=userDetails[j].username;
-      usernameElement.classList.add('mb-1', 'fw-600');
+      usernameElement.textContent = userDetails[j].username;
+      usernameAnchorElement.appendChild(usernameElement);
+      usernameElement.classList.add("mb-1", "fw-600");
       const fullNameElement = document.createElement("p");
-      fullNameElement.textContent=userDetails[j].fullName;
-      fullNameElement.classList.add('mb-1', 'text-muted');
+      fullNameElement.textContent = userDetails[j].fullName;
+      fullNameElement.classList.add("mb-1", "text-muted");
       const imageDiv = document.createElement("div");
       imageDiv.appendChild(followersProfilePic);
       const nameDiv = document.createElement("div");
-      nameDiv.appendChild(usernameElement);
+      nameDiv.appendChild(usernameAnchorElement);
       nameDiv.appendChild(fullNameElement);
       const userDiv = document.createElement("div");
       userDiv.appendChild(imageDiv);
       userDiv.appendChild(nameDiv);
-      userDiv.classList.add('d-flex');
+      userDiv.classList.add("d-flex");
       const buttonDiv = document.createElement("div");
       const button = document.createElement("button");
-      button.innerText="Remove";
-      button.classList.add('btn', 'btn-custom');
+      button.innerText = "Remove";
+      button.classList.add("btn", "btn-custom");
       buttonDiv.appendChild(button);
       followersList.appendChild(userDiv);
       followersList.appendChild(buttonDiv);
@@ -632,39 +651,54 @@ for(let i=0;i<userDetails[result].followers.length;i++){
   }
 }
 
-
-// following fetching 
+// following fetching
 
 const followingListContainer = document.getElementById("following-list");
-followingListContainer.innerHTML="";
-for(let i=0;i<userDetails[result].following.length;i++){
-  for(let j=0;j<userDetails.length; j++){
-    if(userDetails[result].following[i]==userDetails[j].id){
+followingListContainer.innerHTML = "";
+for (let i = 0; i < userDetails[result].following.length; i++) {
+  for (let j = 0; j < userDetails.length; j++) {
+    if (userDetails[result].following[i] == userDetails[j].id) {
+      const usernameAnchorElement = document.createElement("a");
+      usernameAnchorElement.href = "./userProfile.html";
+      usernameAnchorElement.addEventListener("click", function (event) {
+        // event.preventDefault(); // Prevent the default anchor behavior
+        localStorage.setItem("username", userDetails[j].username);
+      });
       const followingList = document.createElement("div");
-      followingList.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'my-2');
+      followingList.classList.add(
+        "d-flex",
+        "justify-content-between",
+        "align-items-center",
+        "my-2"
+      );
       const followingProfilePic = document.createElement("img");
-      followingProfilePic.classList.add('profile-picture-size', 'rounded-circle' ,'mr-3');
-      followingProfilePic.src= userDetails[j].profilePicture;
-      followingProfilePic.alt= userDetails[j].fullName;
+      followingProfilePic.classList.add(
+        "profile-picture-size",
+        "rounded-circle",
+        "mr-3"
+      );
+      followingProfilePic.src = userDetails[j].profilePicture;
+      followingProfilePic.alt = userDetails[j].fullName;
       const usernameElement = document.createElement("p");
-      usernameElement.textContent=userDetails[j].username;
-      usernameElement.classList.add('mb-1', 'fw-600');
+      usernameElement.textContent = userDetails[j].username;
+      usernameAnchorElement.appendChild(usernameElement);
+      usernameElement.classList.add("mb-1", "fw-600");
       const fullNameElement = document.createElement("p");
-      fullNameElement.textContent=userDetails[j].fullName;
-      fullNameElement.classList.add('mb-1', 'text-muted');
+      fullNameElement.textContent = userDetails[j].fullName;
+      fullNameElement.classList.add("mb-1", "text-muted");
       const imageDiv = document.createElement("div");
       imageDiv.appendChild(followingProfilePic);
       const nameDiv = document.createElement("div");
-      nameDiv.appendChild(usernameElement);
+      nameDiv.appendChild(usernameAnchorElement);
       nameDiv.appendChild(fullNameElement);
       const userDiv = document.createElement("div");
       userDiv.appendChild(imageDiv);
       userDiv.appendChild(nameDiv);
-      userDiv.classList.add('d-flex');
+      userDiv.classList.add("d-flex");
       const buttonDiv = document.createElement("div");
       const button = document.createElement("button");
-      button.innerText="Remove";
-      button.classList.add('btn', 'btn-custom');
+      button.innerText = "Remove";
+      button.classList.add("btn", "btn-custom");
       buttonDiv.appendChild(button);
       followingList.appendChild(userDiv);
       followingList.appendChild(buttonDiv);
@@ -673,3 +707,9 @@ for(let i=0;i<userDetails[result].following.length;i++){
   }
 }
 
+// following modal
+
+document.getElementById("following-modal-profile-picture").src =
+  userDetails[result].profilePicture;
+document.getElementById("following-modal-username").textContent =
+  userDetails[result].username;

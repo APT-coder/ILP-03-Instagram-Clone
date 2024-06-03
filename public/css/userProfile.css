@@ -50,11 +50,13 @@ a {
 
 #story-highlights {
   position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
   display: flex;
   align-items: center;
   white-space: nowrap;
+}
+#story-highlights::-webkit-scrollbar {
+  display: none;
 }
 
 .story-highlight {
@@ -219,12 +221,24 @@ a {
 }
 
 .comment-section {
-  height: 50%;
+  height: 45%;
   overflow: auto;
 }
 
 .comment-section::-webkit-scrollbar {
-  display: none; 
+  display: none;
+}
+
+@media (max-width: 1140px) {
+  .comment-section {
+    height: 35%;
+  }
+}
+
+@media (max-width: 950px) {
+  .comment-section {
+    height: 28%;
+  }
 }
 
 /* following modal  */
