@@ -1,4 +1,5 @@
-const API_URL = 'https://second-majestic-fennel.glitch.me/'; // Replace with your actual API endpoint
+const API_URL = "https://second-majestic-fennel.glitch.me/";
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // Fetch all users
 export async function fetchUsers() {
@@ -7,7 +8,7 @@ export async function fetchUsers() {
     const users = await response.json();
     return users;
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error("Error fetching users:", error);
   }
 }
 
@@ -29,7 +30,7 @@ export async function fetchPosts() {
     const posts = await response.json();
     return posts;
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    console.error("Error fetching posts:", error);
   }
 }
 
@@ -51,7 +52,7 @@ export async function fetchComments() {
     const comments = await response.json();
     return comments;
   } catch (error) {
-    console.error('Error fetching comments:', error);
+    console.error("Error fetching comments:", error);
   }
 }
 
@@ -68,15 +69,13 @@ export async function fetchCommentById(commentId) {
 
 export async function fetchCommentsByPostId(postId) {
   try {
-    const comments = await fetch(`${API_URL}/comments?postId=${postId}`);
-    console.log(comments)
+    const response = await fetch(`${API_URL}/comments?postId=${postId}`);
+    const comments = await response.json();
     return comments;
-
   } catch (error) {
     console.error(`Error fetching comments for post with ID ${postId}:`, error);
   }
 }
-
 
 // Fetch all likes
 export async function fetchLikes() {
@@ -85,7 +84,7 @@ export async function fetchLikes() {
     const likes = await response.json();
     return likes;
   } catch (error) {
-    console.error('Error fetching likes:', error);
+    console.error("Error fetching likes:", error);
   }
 }
 
@@ -107,7 +106,7 @@ export async function fetchStories() {
     const stories = await response.json();
     return stories;
   } catch (error) {
-    console.error('Error fetching stories:', error);
+    console.error("Error fetching stories:", error);
   }
 }
 
@@ -129,7 +128,7 @@ export async function fetchReels() {
     const reels = await response.json();
     return reels;
   } catch (error) {
-    console.error('Error fetching reels:', error);
+    console.error("Error fetching reels:", error);
   }
 }
 
@@ -150,7 +149,7 @@ export async function fetchExplore() {
     const explore = await response.json();
     return explore;
   } catch (error) {
-    console.error('Error fetching explore:', error);
+    console.error("Error fetching explore:", error);
   }
 }
 
@@ -161,7 +160,7 @@ export async function fetchMessages() {
     const messages = await response.json();
     return messages;
   } catch (error) {
-    console.error('Error fetching messages:', error);
+    console.error("Error fetching messages:", error);
   }
 }
 
@@ -179,110 +178,101 @@ export async function fetchMessageById(messageId) {
 export async function updateVisitedStatus(storyId) {
   try {
     const response = await fetch(`${API_URL}/stories/${storyId}`, {
-      method: 'PATCH', // JSON Server uses PATCH for updates
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ visited: true })
+      body: JSON.stringify({ visited: true }),
     });
 
     if (!response.ok) {
-      throw new Error('Failed to update visited status');
+      throw new Error("Failed to update visited status");
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error updating visited status:', error);
+    console.error("Error updating visited status:", error);
     throw error;
   }
 }
 
 export async function updateUserFollowing(userId, followUserId) {
   try {
-    // Fetch current user data
     const userResponse = await fetch(`${API_URL}/users/${userId}`);
-    
-    if (!userResponse.ok) {
-      throw new Error('Failed to fetch user data');
-    }
-    
-    const userData = await userResponse.json();
 
-    // Check if the followUserId is already in the following list
+    if (!userResponse.ok) {
+      throw new Error("Failed to fetch user data");
+    }
+
+    const userData = await userResponse.json();
     if (!userData.following.includes(followUserId)) {
-      // Append followUserId to the following list
       userData.following.push(followUserId);
     }
-
-    // Update the user's following list
     const updateResponse = await fetch(`${API_URL}/users/${userId}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ following: userData.following })
+      body: JSON.stringify({ following: userData.following }),
     });
 
     if (!updateResponse.ok) {
-      throw new Error('Failed to update following list');
+      throw new Error("Failed to update following list");
     }
 
     const data = await updateResponse.json();
     return data;
   } catch (error) {
-    console.error('Error updating following list:', error);
+    console.error("Error updating following list:", error);
     throw error;
   }
 }
 
 export async function addCommentToPost(postId, userId, text) {
   try {
-    // Fetch current comments
     const commentsResponse = await fetch(`${API_URL}/comments`);
-    
+
     if (!commentsResponse.ok) {
-      throw new Error('Failed to fetch comments');
+      throw new Error("Failed to fetch comments");
     }
-    
-    const commentsData = await commentsResponse.json();
 
-    // Generate a new comment id based on the current comments length
-    const newCommentId = commentsData.length ? commentsData[commentsData.length - 1].id + 1 : 1;
+    let commentsData = await commentsResponse.json();
 
-    // Get the current date and time
-    const timestamp = new Date().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const newCommentId = commentsData.length
+      ? commentsData[commentsData.length - 1].id + 1
+      : 1;
 
-    // Create a new comment object
+    const timestamp = new Date().toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
     const newComment = {
       id: newCommentId,
       postId: postId,
       userId: userId,
       text: text,
-      timestamp: timestamp
+      timestamp: timestamp,
     };
 
-    // Append the new comment to the comments list
     commentsData.push(newComment);
-
-    // Update the comments list on the server
     const updateResponse = await fetch(`${API_URL}/comments`, {
-      method: 'PATCH',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(commentsData)
+      body: JSON.stringify(newComment),
     });
 
     if (!updateResponse.ok) {
-      throw new Error('Failed to update comments list');
+      throw new Error("Failed to update comments list");
     }
 
-    const data = await updateResponse.json();
-    return data;
+    return commentsData;
   } catch (error) {
-    console.error('Error adding comment:', error);
+    console.error("Error adding comment:", error);
     throw error;
   }
 }
-
