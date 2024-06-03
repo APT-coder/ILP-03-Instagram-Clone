@@ -14,6 +14,7 @@ const usermail = localStorage.getItem("usermail");
 const userData = await fetchUsers();
 let user = userData.find((user) => user.email === usermail);
 const username = user.username;
+localStorage.setItem("loginUsername", username);
 
 async function receiveStories() {
   const data = await fetchStories();
