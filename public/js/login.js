@@ -21,7 +21,7 @@ document.getElementById("login").addEventListener("click", function(event) {
       const user = userCredential.user;
       localStorage.setItem("usermail", email);
       alert("Login success");
-      window.location.href="../html/homeandfeed.html";
+      window.location.href="../html/home.html";
     })
     .catch((error) => {
       const errorMessage = error.message;
