@@ -19,9 +19,9 @@ document.getElementById("login").addEventListener("click", function(event) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      localStorage.setItem("email", email);
+      localStorage.setItem("usermail", email);
       alert("Login success");
-      window.location.href="../html/home.html";
+      window.location.href="../html/homeandfeed.html";
     })
     .catch((error) => {
       const errorMessage = error.message;
