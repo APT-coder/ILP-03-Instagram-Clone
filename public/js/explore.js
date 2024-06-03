@@ -1,4 +1,4 @@
-import { fetchUserById, fetchExplore } from '../assets/js/apifetch.js';
+import { fetchUserById, fetchExplore } from '../js/apifetch.js';
 
 
 async function receiveExplore() {
