@@ -42,6 +42,14 @@
 .vida {
     max-width: 100%;
     display: block;
+    height: 200%;
+}
+
+.vid_container iframe:hover {
+    display: block;
+    background: rgba(0, 0, 0, .4);
+    cursor: pointer;
+    height: 200%;
 }
 
 .img_container,
@@ -56,8 +64,7 @@
     height: 100%;
 }
 
-.img_container .after,
-.vid_container .after {
+.img_container .after {
     position: absolute;
     top: 0;
     left: 0;
@@ -73,6 +80,7 @@
     background: rgba(0, 0, 0, .4);
     cursor: pointer;
 }
+
 
 .likes,
 .vid_likes {
@@ -228,6 +236,33 @@
 .modal-nav-right {
     right: 10px;
 }
-.col-6{
+
+.col-6 {
     display: flex;
+}
+
+.liked {
+    color: red;
+}
+
+.modal-body {
+    margin: 0%;
+    padding: 0%;
+    margin-top: 96px;
+    margin-bottom: 178px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 5%;
+    z-index: 1000;
+    width: 32.5%;
+    background-color: white;
+}
+
+.header {
+    width: 32.5%;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
 }
