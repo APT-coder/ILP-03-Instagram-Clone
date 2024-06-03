@@ -51,7 +51,6 @@ async function initPosts() {
 
 
     const posts = await receiveExplore();
-    // const posts = [...post, ...post];
     console.log(posts);
     function openModal(src, type, username, profilePicture, location, caption, user, likes, time) {
         currentIndex = posts.findIndex(post => post.src === src);
@@ -128,12 +127,18 @@ async function initPosts() {
             const randomIndex = Math.floor(Math.random() * posts.length);
             commentedUsername.textContent = posts[randomIndex].user.username;
             img.src = posts[randomIndex].user.profilePicture;
+            const usernameAnchorElement = document.createElement("a");
+            usernameAnchorElement.href = "./userProfile.html";
+            usernameAnchorElement.addEventListener("click", function (event) {
+                localStorage.setItem("username", posts[randomIndex].user.username);
+            });
+            usernameAnchorElement.appendChild(commentedUsername);
             comment.textContent = getRandomComments();
             const commentReply = document.createElement("p");
             commentReply.classList.add('text-muted', 'fs-12', 'ml-5', 'pl-2');
             commentReply.textContent = "1w 2likes Reply"
             commentDiv.appendChild(img);
-            commentDiv.appendChild(commentedUsername);
+            commentDiv.appendChild(usernameAnchorElement);
             commentDiv.appendChild(comment);
             commentDiv.appendChild(commentReply);
             commentSection.appendChild(commentDiv);
@@ -206,7 +211,7 @@ async function initPosts() {
                     openModal(post.src, post.type, post.username, post.profilePicture, post.location, post.caption, post.user, post.likes, post.time);
                 };
             } else if (post.type === 'video') {
-                const video = document.createElement('iframe');
+                const video = document.createElement('video');
                 video.src = post.src;
                 video.classList.add('vida');
                 video.loop = true;
@@ -346,4 +351,81 @@ function getRandomLocation() {
         "Mexico City, Mexico"
     ];
     return locations[Math.floor(Math.random() * locations.length)];
+}
+
+document.getElementById("searchBox").addEventListener("click",openSearchBox);
+var Searchbox = false;
+function openSearchBox() {
+    var upsearchbox = document.getElementById("find");
+    document.getElementById('grid-container').style.zIndex="-1"
+    Searchbox = !Searchbox;
+    if (Searchbox) {
+        upsearchbox.classList.add("show-search");
+    } else {
+        upsearchbox.classList.remove("show-search");
+        document.getElementById('grid-container').style.zIndex="0"
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayRecentSearches();
+
+    const searchInput = document.getElementById('search-input');
+    const clearIcon = document.getElementById('clear-input');
+
+    searchInput.addEventListener('keypress', handleSearch);
+    searchInput.addEventListener('input', () => {
+        clearIcon.style.display = searchInput.value ? 'block' : 'none';
+    });
+
+    clearIcon.addEventListener('click', () => {
+        searchInput.value = '';
+        clearIcon.style.display = 'none';
+    });
+});
+
+function handleSearch(event) {
+    if (event.key === 'Enter') {
+        const query = event.target.value;
+        if (query) {
+            saveSearch(query);
+            displayRecentSearches();
+            event.target.value = '';
+            document.getElementById('clear-input').style.display = 'none';
+        }
+    }
+}
+
+function saveSearch(query) {
+    let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    if (!recentSearches.includes(query)) {
+        recentSearches.push(query);
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+    }
+}
+
+function displayRecentSearches() {
+    const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    const recentSearchesContainer = document.getElementById('recent-searches');
+
+    if (recentSearches.length === 0) {
+        recentSearchesContainer.innerHTML = '<p>No recent searches.</p>';
+    } else {
+        recentSearchesContainer.innerHTML = recentSearches.map(search => `
+              <p>${search} <i class="bi bi-x-circle remove-icon" onclick="removeSearch('${search}')"></i></p>
+            `).join('');
+    }
+}
+
+function clearSearches() {
+    localStorage.removeItem('recentSearches');
+    displayRecentSearches();
+}
+
+function removeSearch(search) {
+    let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    recentSearches = recentSearches.filter(item => item !== search);
+    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+    displayRecentSearches();
 }
