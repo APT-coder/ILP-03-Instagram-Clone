@@ -1,143 +1,261 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  ::-webkit-scrollbar {
-    width: 0;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+/* new addition */
+
+/* new ends */
+.container .reels_videos {
+  padding-top: 10px;
+  position: relative;
+  width: 32vw; /* Adjusted from fixed width to relative width */
+  height: 100vh; /* Adjusted from fixed height to relative height */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+.container .reels_videos .video {
+  position: relative;
+  width: 32vw;
+  height: 580.5px;
+  scroll-snap-align: center;
+  margin-bottom: 2.5vh; /* Adjusted margin to be relative to viewport */
+  overflow: hidden;
+  border: none;
+  border-radius: 5px;
+}
+
+.container .reels_videos .video iframe {
+  width: 326.531px;
+  height: 580.5px;
+  object-fit: cover;
+  border: none;
+  border-radius: 5px;
+}
+.container .reels_videos .video .top {
+  position: absolute; /* Adjusted top position to be relative to viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  height: 32px;
+  width: 32px;
+  top: 1.5vh;
+  left:44vh;
+  background: #ffffff47;
+  border-radius: 24px;
+  border:none;
+}
+.container .reels_videos .video .top:hover{
+  cursor: pointer;
+  background: #ffffff67;
+}
+.container .reels_videos .video .top h4 {
+  color: #fff;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+.container .reels_videos .video .top i {
+  font-size: 2vh; /* Adjusted font-size to be relative to viewport */
+  user-select: none;
+} 
+/* new addition */
+.container .reels_videos .video .icons {
+  position: absolute;
+  bottom: -130px;
+  right: 0.83vw;
+  gap: 1.67vh;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.container .reels_videos .video .icons .heart:hover,
+.container .reels_videos .video .icons .comment:hover,
+.container .reels_videos .video .icons .share:hover,
+.container .reels_videos .video .icons .saved:hover,
+.container .reels_videos .video .icons .more:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+
+
+.container .reels_videos .video .icons button {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+.container .reels_videos .video .icons i {
+  font-size: 2vh; /* Adjusted font-size to be relative to viewport */
+}
+.container .reels_videos .video .icons img {
+  width: 4vh; /* Adjusted width to be relative to viewport*/
+  height: 4vh; 
+  border-radius: 5px;
+  box-shadow: 0 0 2px 4px #fff;
+  /*margin-right: 1.25vw; /* Adjusted margin to be relative to viewport */
+  /* Example CSS for adding box shadow on all four sides of a box */
+
+
+  background-color: rgb(var(--ig-highlight-background));
+  display: block;
+  /* width: 100%; */
+  position: relative;
+}
+.container .reels_videos .video .user_profile {
+  position: absolute;
+  bottom: 4.67vh; /* Adjusted bottom position to be relative to viewport */
+  left: 0.83vw; /* Adjusted left position to be relative to viewport */
+  color: #fff;
+  width: 80%;
+}
+.container .reels_videos .video .user_profile img {
+  width: 4vh; /* Adjusted width to be relative to viewport */
+  height: 4vh; /* Adjusted height to be relative to viewport */
+  border-radius: 50%;
+  margin-right: 1.25vw; /* Adjusted margin to be relative to viewport */
+  margin-left: 0.83vw; /* Adjusted margin to be relative to viewport */
+}
+.container .reels_videos .video .user_profile div {
+  display: flex;
+  align-items: center;
+}
+.container .reels_videos .video .user_profile h4 {
+  letter-spacing: 0.3px;
+  margin-right: 2vh; /* Adjusted margin to be relative to viewport */
+}
+.container .reels_videos .video .user_profile button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.container .reels_videos .video .user_profile .follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 1vh; /* Adjusted padding to be relative to viewport */
+  background: transparent;
+  color: #fff;
+  border: 0.5px solid #ffffff97;
+  border-radius: 7px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
+}
+.container .reels_videos .video .user_profile p {
+  margin-top: 0.83vh; /* Adjusted margin to be relative to viewport */
+  padding: 0.83vh; /* Adjusted padding to be relative to viewport */
+  max-height: 4vh; /* Adjusted max-height to be relative to viewport */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.container .reels_videos .video .user_profile span {
+  font-size: 0.85em;
+  padding-left: 0.83vw; /* Adjusted padding to be relative to viewport */
+  margin-top: 0.83vh; /* Adjusted margin to be relative to viewport */
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
   .container .reels_videos {
-    position: relative;
-    width: 394px;
-    height: 700px;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+      width: 40vw; /* Adjusted width for smaller screens */
+      height: 70vh; /* Adjusted height for smaller screens */
   }
   .container .reels_videos .video {
-    position: relative;
-    width: 100%;
-    /* new */
-    height: calc(100% - 40px);
-    scroll-snap-align: start;
-    /* new */
-    margin-bottom: 10px;
-    overflow: hidden;
-    border: none;
-    border-radius: 5px;
+      height: calc(100% - 8vh);
+      margin-bottom: 2vh;
   }
-  .container .reels_videos .video video {
-    /* padding: 1.5px; */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+}
+
+@media (max-width: 480px) {
+  .container .reels_videos {
+      width: 80vw; /* Adjusted width for very small screens */
+      height: 80vh; /* Adjusted height for very small screens */
+  }
+  .container .reels_videos .video {
+      height: calc(100% - 10vh);
+      margin-bottom: 3vh;
   }
   .container .reels_videos .video .top {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 20px;
-    color: #fff;
-  }
-  .container .reels_videos .video .top h4 {
-    color: #fff;
-    letter-spacing: 0.3px;
-    font-weight: 500;
-  }
-  .container .reels_videos .video .top i {
-    font-size: 20px;
-    user-select: none;
+      top: 2vh;
+      padding: 0 2vw;
   }
   .container .reels_videos .video .icons {
-    position: absolute;
-    bottom: 10px;
-    right: 5px;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
+      bottom: 2vh;
+      right: 2vw;
+      
   }
-  .container .reels_videos .video .icons div {
-    display: flex;
-    flex-direction: column;
-  }
-  .container .reels_videos .video .icons i {
-    font-size: 20px;
-  }
-  
-  .container .reels_videos .video .icons img {
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    box-shadow: 0 0 2px 4px #fff;
-    margin-right: 5px;
+  .container .reels_videos .video .icons .likes{
+    color: #000 !important;
+
   }
   .container .reels_videos .video .user_profile {
-    position: absolute;
-    bottom: 10px;
-    left: 5;
-    color: #fff;
-    width: 80%;
+      bottom: 2vh;
+      left: 2vw;
   }
-  .container .reels_videos .video .user_profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    margin-left: 5px;
-  }
-  .container .reels_videos .video .user_profile div {
-    display: flex;
-    align-items: center;
-  }
-  .container .reels_videos .video .user_profile h4 {
-    letter-spacing: 0.3px;
-    margin-right: 15px;
-  }
-  .container .reels_videos .video .user_profile button {
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-  }
-  .container .reels_videos .video .user_profile .follow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    outline: none;
-    padding: 5px 20px;
-    background: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .container .reels_videos .video .user_profile p {
-    margin-top: 5px;
-    padding: 5px;
-    max-height: 44px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-  }
-  .container .reels_videos .video .user_profile span {
-    font-size: 0.85em;
-    padding-left: 5px;
-    margin-top: 5px;
-  }
-  
+}
+
+/* new container edit */
+.container {
+  position: relative; /* Add position relative to the container */
+}
+
+.container .icons {
+  position: absolute;
+  bottom: 0; /* Position at the vertical center */
+  right: 0; /* Align to the right edge of the container */
+  transform: translateY(-50%); /* Adjust vertically to center */
+  display: flex;
+  flex-direction: column;
+  /* gap: 3vh; */
+  color: #000000;
+  align-items: center;
+}
+
+.container .icons div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .icons i {
+  font-size: 2vh;
+}
+
+.container .icons img {
+  /* width: 3.5vh;
+  height: 3.5vh; */
+  /* border-radius: 10px;
+  box-shadow: 0 0 2px 4px #fff; */
+  /* margin-right: 1.25vw; */
+}
+
+.container small{
+  font-weight: 200 !important;
+}

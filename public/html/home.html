@@ -32,142 +32,259 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+     rel="stylesheet"/>
     <title>Instagram</title>
+    <script>
+      const cancelCard = (cardId, overlayId) => {
+        document.getElementById(cardId).style.display = 'none';
+        if (overlayId) {
+             document.getElementById(overlayId).style.display = 'none';
+        }
+      };
+    </script>
   </head>
 
   <body>
-    <!-- --------------------sidebaR----------------- -->
+    
+    <!-- --------------------sidebar----------------- -->
     <div class="sidebar">
       <div class="top-container">
-        <img class="logo" src="../assets/home/logo.png" />
+        <img class="logo" onclick="navigateTo('../html/home.html')" src="../assets/home/logo.png" />
         <img
           class="logo2"
           src="../assets/home/instagram (1).png"
         />
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/home.html')">
           <img
             src="../assets/home/homelight.png"
-            style="height: 1.5rem; margin-right: 0.5rem"
+            style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Home</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/search.html')">
           <img
             src="../assets/home/search.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Search</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/explore.html')">
           <img
             src="../assets/home/compass.png"
-            style="height: 1.5rem; margin-right: 0.5rem"
+            style="height: 1.7rem; margin-right: 0.9rem"
           />
-          <a href="#">Explore</a>
+          <a href="../html/explore.html">Explore</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/reels.html')">
           <img
             src="../assets/home/video.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.4rem; margin-right: 0.9rem"
           />
           <a href="../html/reels.html">Reels</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/messages.html')">
           <img
             src="../assets/home/messengerlight.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.7rem; margin-right: 0.9rem"
           />
           <a href="#">Messages</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/notifications.html')">
           <img
             src="../assets/home/love.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.5rem; margin-right: 0.9rem"
           />
           <a href="#">Notifications</a>
         </div>
-        <div class="link">
+        <div class="link" onclick="navigateTo('../html/createPost.html')">
           <img
             src="../assets/home/tab.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.5rem; margin-right: 0.9rem"
           />
-          <a href="#">Create</a>
+          <a href="../html/createPost.html">Create</a>
         </div>
-        <div class="link profile-sidebar">
+        <div class="link profile-sidebar" onclick="navigateTo('../html/userAccount.html')">
           <img
-            src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            class="profile-sidebar-image"
+            style="height: 1.5rem; margin-right: 0.9rem"
           />
-          <a href="#">Profile</a>
+          <a href="../html/userAccount.html">Profile</a>
         </div>
       </div>
       <div class="bottom-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="link" style="width:45px; height:45px;"><path d="M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z"/></svg>
+        
         <div class="link">
           <img
             src="../assets/home/menulighgt.png"
-            style="height: 1.2rem; margin-right: 0.6rem"
+            style="height: 1.2rem; margin-right: 0.9rem"
           />
           <a href="#">More</a>
         </div>
       </div>
     </div>
     <!-- --------nav for very small screen----------- -->
+    <div class="top-navbar">
+      <div class="top-navbar-right">
+        <img class="logo top-navbar-logo" src="../assets/home/logo.png" />
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="size-6 custom-svg-size top-navbar-array-down"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style> </defs> <title></title> <g id="chevron-bottom"> <line class="cls-1" x1="16" x2="7" y1="20.5" y2="11.5"></line> <line class="cls-1" x1="25" x2="16" y1="11.5" y2="20.5"></line> </g> </g></svg>
+      </div>
+      <div class="top-navbar-list">
+        <div class="top-navbar-list-one">
+          <a class="dropdown-item" href="#">Following</a>
+          <img src="../assets/home/star-empty-icon.svg" style="height: 20px;">
+        </div>
+        <hr>
+        <div class="top-navbar-list-two">
+          <a class="dropdown-item" href="#">Favourites .</a>
+          <i class="fa-solid fa-user-group"></i>
+        </div>
+      </div>
+      <div class="top-navbar-left">
+        <div class="input-group rounded">
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        </div>        
+        <img
+            src="../assets/home/love.png"
+            style="height: 1.5rem; margin-top: 0.4rem; margin-left: 0.9rem;"
+          />
+      </div>
+    </div>
+
+
     <div class="bottom-navbar">
       <img
         src="../assets/home/accueil.png"
-        style="height: 1.5rem; margin-right: 0.5rem"
-      />
-      <img
-        src="../assets/home/search.png"
-        style="height: 1.5rem; margin-right: 0.5rem"
+        style="height: 1.9rem; margin-right: 0.5rem"
       />
       <img
         src="../assets/home/compass.png"
-        style="height: 1.5rem; margin-right: 0.5rem"
+        style="height: 2rem; margin-right: 0.5rem"
       />
       <img
         src="../assets/home/video.png"
         style="height: 1.5rem; margin-right: 0.5rem"
       />
       <img
-        src="../assets/home/send.png"
-        style="height: 1.5rem; margin-right: 0.5rem"
-      />
-      <img
-        src="../assets/home/love.png"
-        style="height: 1.5rem; margin-right: 0.5rem"
-      />
-      <img
         src="../assets/home/tab.png"
         style="height: 1.5rem; margin-right: 0.5rem"
       />
+      <img
+        src="../assets/home/messengerlight.png"
+        style="height: 1.8rem; margin-right: 0.5rem"
+      />
+      <div class="link profile-sidebar">
+        <img
+          src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
+          style="height: 1.5rem; margin-right: 0.9rem"
+        />
+        <a href="#">Profile</a>
+      </div>
+
+      
     </div>
     <!-- ------------------center feed--------------- -->
     <div class="center-feed">
       <div class="story-post-container">
         <!-- ---story---- -->
-        <div class="story-container">
-          <!-- <div class="story">
-                    <div class="gradient-border">
-                        <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" alt="Profile Picture" />
-                    </div>
-                    <p>Username1</p>
-                </div>-->
+          <div class="story-container">
+            <div class="my-story-container">
+              <div class="my-story story">
+                      <div class="gradient-border">
+                          <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" alt="Profile Picture" />
+                      </div>
+                      <i class="fa-solid fa-circle-plus add-story"></i>
+                      <p class="add-story-username" >My story</p>
+                  </div>
+            </div>
         </div>
         <!-- --------------------post-------------------- -->
-
+        <div class="post-container">
+          <div class="suggestion-container">
+              <div class="suggestion-header">
+                  <p>Suggestions for you</p>
+                  <a href="">See all</a>
+              </div>
+              <div class="suggestion">
+                 
+                 <!-- -------- --> 
+                 <div id="overlay"></div> 
+                 <div id="suggest-card"  class="suggest-card" style="height:18.75rem;width: 25rem;padding:0;">
+                  <div class="suggest-confirmation" style="height:170px;width:380px;">
+                    <img src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png" style="height:5.625rem;width:5.625rem; border-radius:50%;">
+                    <p>Unfollow mr_username?</p>
+                  </div>
+                  <hr/>
+                  <div class="suggest-unfollow" id="suggest-unfollow" onclick="unfollow()">Unfollow</div>
+                  <hr/>
+                  <div class="suggest-cancel" id="suggest-cancel" onclick="cancel()">Cancel</div>
+                </div>
+                <!-- --------- -->
+                <div class="shareTo" id="shareTo" >
+                  <div class="shareTo-Body">
+                  <div class="shareToHeading">
+                    <p>Share to...</p>
+                    <i class="ri-close-line" onclick="cancelCard('shareTo', 'overlay')"></i>
+                  </div>
+                  <hr/>
+                  <div class="shareToOptions">
+                    <img src="../assets/home/threads.png">
+                    <p>Share to Threads</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-facebook-circle-line"></i>
+                    <p>Share to Facebook</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-messenger-line"></i>
+                    <p>Share to Messenger</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-twitter-line"></i>
+                    <p>Share to Twitter</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-mail-line"></i>
+                    <p>Share via Email</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-qr-code-line"></i>
+                    <p>QR code</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="ri-link-m"></i>
+                    <p>Copy link</p>
+                  </div>
+                  <div class="shareToOptions">
+                    <i class="bi bi-arrow-90deg-right"></i>
+                    <p>See all</p>
+                  </div>
+                  <div class="shareToCancel" onclick="cancelCard('shareTo', 'overlay')">Cancel</div>
+                </div>
+                </div>
+                 <!-- ------------- -->
+              </div>
+            </div>
+            <div class="hr"><hr/></div>
+            <!-- --------- -->
+            
+      </div>
         <!-- -------------------------------------------- -->
       </div>
       <div class="profile-suggestion">
         <div class="profile-flex">
           <div class="profile">
             <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
               alt="Profile Picture"
+              id="logged-in-dp"
             />
             <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
+              <strong id="logged-in-username"></strong>
+              <span class="profile-info-name" id="logged-in-fullname"></span>
             </div>
           </div>
           <div class="switch">Switch</div>
@@ -176,71 +293,10 @@
           <p>Suggested for you</p>
           <p id="see-all">See All</p>
         </div>
-        <div class="profile-flex">
-          <div class="profile">
-            <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-              alt="Profile Picture"
-            />
-            <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
-            </div>
-          </div>
-          <div class="switch">Follow</div>
-        </div>
-        <div class="profile-flex">
-          <div class="profile">
-            <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-              alt="Profile Picture"
-            />
-            <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
-            </div>
-          </div>
-          <div class="switch">Follow</div>
-        </div>
-        <div class="profile-flex">
-          <div class="profile">
-            <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-              alt="Profile Picture"
-            />
-            <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
-            </div>
-          </div>
-          <div class="switch">Follow</div>
-        </div>
-        <div class="profile-flex">
-          <div class="profile">
-            <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-              alt="Profile Picture"
-            />
-            <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
-            </div>
-          </div>
-          <div class="switch">Follow</div>
-        </div>
-        <div class="profile-flex">
-          <div class="profile">
-            <img
-              src="https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png"
-              alt="Profile Picture"
-            />
-            <div class="profile-info">
-              <strong>Username</strong>
-              <span class="profile-info-name">Name</span>
-            </div>
-          </div>
-          <div class="switch">Follow</div>
-        </div>
+<!-- -----------------for profile suggestions---------------- -->
+        <div class="profile-container"></div>
+<!-- ------------------------------------------------------------- -->
+
         <ul class="profile-list">
           <li class="no-bullet">About</li>
           <li>Help</li>
@@ -259,56 +315,71 @@
     </div>
     <!-- -----------story-listing----------- -->
     <div class="story-full">
+      <img class=" story-full-logo" onclick="navigateTo('../html/home.html')" src="../assets/home/instagram-white-logo.png" />
       <div class="close-btn">
-        <a href="../html/home.html"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6 custom-svg-size"
-          >
+        <a href="../html/home.html">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6 custom-svg-size">
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            /></svg></a>
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"/>
+            </svg>
+        </a>
       </div>
       <div class="content">
-        <div class="left-arrow">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6 custom-svg-size"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            />
-          </svg>
+        <div class="story-view">
+          
+          <div class="story-box left-story-two"></div>
+          <div class="story-box left-story"></div>
+          <div class="left-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 custom-svg-size"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+            
+          </div>
+          <!-- <div class="progress-container">
+            <div class="progress-bar-story" id="progressBar"></div>
+          </div>     -->
+          <div class="story-box current-story">
+            
+          </div>
+          <div class="right-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 custom-svg-size"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </div>
+          <div class="story-box right-story"></div>
+        <div class="story-box right-story-two"></div>
         </div>
-        <img class="story-image-class" />
-        <div class="right-arrow">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6 custom-svg-size"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </div>
+        
         <div class="in-story-icon">
           <div class="bottom-of-story">
             <form class="story-reply-form">
@@ -321,43 +392,24 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6 custom-svg-size"
-              >
+                class="size-6 custom-svg-size like-icon"
+                >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                />
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
               </svg>
-              <svg
-                fill="#000000"
-                viewBox="0 0 32 32"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="currentColor"
-                class="custom-svg-size"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M31.376 0c-0.191 0-0.422 0.054-0.691 0.168l-29.833 12.659c-1.074 0.456-1.142 1.334-0.151 1.951l8.43 5.251c0.991 0.617 2.301 1.94 2.912 2.939l5.053 8.274c0.29 0.474 0.64 0.71 0.977 0.71 0.372 0 0.727-0.286 0.97-0.851l12.758-29.805c0.345-0.808 0.148-1.296-0.426-1.297zM10.174 18.248l-6.833-4.257 22.925-9.726-14.756 15.006c-0.451-0.4-0.909-0.757-1.337-1.023zM17.898 28.602l-4.076-6.672c-0.241-0.394-0.558-0.814-0.912-1.231l14.825-15.075z"
-                  ></path>
-                </g>
-              </svg>
+              <svg fill="#ffffff" width="167px" height="167px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00032" class="custom-svg-size share-icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M31.376 0c-0.191 0-0.422 0.054-0.691 0.168l-29.833 12.659c-1.074 0.456-1.142 1.334-0.151 1.951l8.43 5.251c0.991 0.617 2.301 1.94 2.912 2.939l5.053 8.274c0.29 0.474 0.64 0.71 0.977 0.71 0.372 0 0.727-0.286 0.97-0.851l12.758-29.805c0.345-0.808 0.148-1.296-0.426-1.297zM10.174 18.248l-6.833-4.257 22.925-9.726-14.756 15.006c-0.451-0.4-0.909-0.757-1.337-1.023zM17.898 28.602l-4.076-6.672c-0.241-0.394-0.558-0.814-0.912-1.231l14.825-15.075z"></path> </g></svg>
             </div>
           </div>
           <div class="story-top-header">
             <div class="top-left-story">
-              <img
-                src="../assets/home/photo.jpg"
-                alt="Story Image"
-              />
-              <p class="story-username">Username</p>
+              <div class="progress-container">
+                <div class="progress-bar-story" id="progressBar"></div>
+            </div>
+              <img class="story-view-dp"/>
+              <p class="story-username"></p>
+              
             </div>
 
             <div class="top-of-story">
@@ -367,7 +419,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6 custom-svg-size"
+                class="size-6 custom-svg-size sound-icon"
               >
                 <path
                   stroke-linecap="round"
@@ -381,7 +433,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6 custom-svg-size"
+                class="size-6 custom-svg-size pause-icon"
               >
                 <path
                   stroke-linecap="round"
@@ -389,36 +441,19 @@
                   d="M15.75 5.25v13.5m-7.5-13.5v13.5"
                 />
               </svg>
-              <svg
-                fill="#000000"
-                height="200px"
-                width="200px"
-                id="Layer_1"
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                stroke="currentColor"
-                class="custom-svg-size"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    class="cls-1"
-                    d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"
-                  ></path>
-                </g>
-              </svg>
-            </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="custom-svg-size"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"/></svg>            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- ----------------------------------- -->
   </body>
-  <script src="../js/home.js"></script>
+  <script>
+    function navigateTo(url) {
+    window.location.href = url;
+  }
+  </script>
+  <script type="module" src="../js/home.js"></script>
+  <script type="module" src="../js/apiFetch.js"></script>
+
 </html>

@@ -19,7 +19,7 @@ document.getElementById("login").addEventListener("click", function(event) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      localStorage.setItem("email", email);
+      localStorage.setItem("usermail", email);
       alert("Login success");
       window.location.href="../html/home.html";
     })

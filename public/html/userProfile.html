@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
+    <title id="title">Profile Page</title>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -38,8 +38,12 @@
           <div class="col-md-9">
             <div class="d-flex align-items-center mb-3">
               <h2 id="username" class="mr-4 fs-20 fw-400">Username</h2>
-              <button class="btn btn-custom mr-2">
-                <a href="">Following <i class="bi bi-chevron-down"></i></a>
+              <button
+                class="btn btn-custom mr-2"
+                data-toggle="modal"
+                data-target="#followingModal"
+              >
+                Following <i class="bi bi-chevron-down"></i>
               </button>
               <button class="btn btn-custom mr-2">
                 <a href="">Message</a>
@@ -47,7 +51,11 @@
               <button class="btn btn-custom fs-28 mr-2">
                 <i class="bi bi-person-plus"></i>
               </button>
-              <button class="btn btn-custom fs-28">
+              <button
+                class="btn btn-custom fs-28"
+                data-toggle="modal"
+                data-target="#moreModal"
+              >
                 <i class="bi bi-three-dots"></i>
               </button>
             </div>
@@ -55,20 +63,26 @@
               <div class="mr-5">
                 <span id="posts-count" class="fw-600">0</span> posts
               </div>
-              <div class="mr-5">
-                <span id="followers-count" class="fw-600">0</span> followers
-              </div>
-              <div class="mr-5">
-                <span id="following-count" class="fw-600">0</span> following
-              </div>
+
+              <a href="" data-toggle="modal" data-target="#followersModal">
+                <div class="mr-5">
+                  <span id="followers-count" class="fw-600">0</span> followers
+                </div>
+              </a>
+
+              <a href="" data-toggle="modal" data-target="#followingListModal">
+                <div class="mr-5">
+                  <span id="following-count" class="fw-600">0</span> following
+                </div>
+              </a>
             </div>
             <div id="name"><strong>Name of the User</strong></div>
             <div id="bio">Bio of the user</div>
             <div class="fs-12 mt-2">
               <span class="text-muted fw-600">Followed by </span
-              ><span class="fw-600">follower1 </span
+              ><span class="fw-600">thezahidx </span
               ><span class="text-muted fw-600">and </span
-              ><span class="fw-600">follower2</span>
+              ><span class="fw-600">revathy</span>
             </div>
           </div>
         </div>
@@ -76,7 +90,7 @@
         <!-- story highlight section  -->
         <div class="row mt-4">
           <div class="col-12">
-            <div id="story-highlights" class="d-flex overflow-hidden"></div>
+            <div id="story-highlights" class="d-flex"></div>
             <button
               class="carousel-control-prev mr-2"
               type="button"
@@ -105,40 +119,41 @@
         <hr class="mb-0" />
 
         <!-- Navigation container -->
-        <div class="row mt-0">
+        <div class="row mt-0 nav-main">
           <div class="col-12 text-center">
             <nav class="nav justify-content-center">
-              <a
-                class="nav-link active"
-                href="#"
-                id="posts-link"
-                onclick="showSection('posts')"
-              >
+              <a class="nav-link active" href="" id="posts-link">
                 <i class="bi bi-grid-3x3"></i> POSTS
               </a>
-              <a
-                class="nav-link"
-                href="#"
-                id="saved-link"
-                onclick="showSection('saved')"
-              >
+              <a class="nav-link" href="#" id="saved-link">
                 <i class="bi bi-play-btn"></i> REELS
               </a>
-              <a
-                class="nav-link"
-                href="#"
-                id="tagged-link"
-                onclick="showSection('tagged')"
-              >
+              <a class="nav-link" href="#" id="tagged-link">
                 <i class="bi bi-person-square"></i> TAGGED
               </a>
             </nav>
           </div>
         </div>
       </div>
+      <!-- sub nav bar  -->
+      <div class="row mt-0 nav-sub">
+        <div class="col-12 text-center">
+          <nav class="nav justify-content-center">
+            <a class="nav-link active mr-1 fs-20" href="" id="posts-link-icon">
+              <i class="bi bi-grid-3x3"></i>
+            </a>
+            <a class="nav-link mr-1 fs-20" href="" id="saved-link-icon">
+              <i class="bi bi-play-btn"></i>
+            </a>
+            <a class="nav-link fs-20" href="" id="tagged-link-icon">
+              <i class="bi bi-person-square"></i>
+            </a>
+          </nav>
+        </div>
+      </div>
 
       <!-- Posts container -->
-      <div id="posts-container" class="row">
+      <div id="posts-container" class="row m-0">
         <!-- Posts will be dynamically added here -->
       </div>
 
@@ -153,7 +168,7 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered modal-lg"
+          class="modal-dialog mxw-80 modal-dialog-centered modal-lg"
           role="document"
         >
           <div class="modal-content">
@@ -161,49 +176,62 @@
               <div id="modal-post" class="col-6">
                 <img id="modal-post-image" src="" alt="" />
               </div>
-              <div class="modal-post-info col-6 p-0">
-                <div class="modal-profile d-flex mt-3 pl-3">
-                  <div class="mr-3">
-                    <img
-                      src=""
-                      alt=""
-                      id="modal-profile-picture"
-                      class="profile-picture-size rounded-circle"
-                    />
+              <div class="modal-post-info col-6">
+                <div
+                  class="modal-profile d-flex mt-3 mr-2 justify-content-between"
+                >
+                  <div class="d-flex">
+                    <div class="mr-3">
+                      <img
+                        src=""
+                        alt=""
+                        id="modal-profile-picture"
+                        class="profile-picture-size rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <p id="modal-username" class="fs-14 fw-600 mb-0"></p>
+                      <p id="postlocation" class="fs-12 mb-0">
+                        Random Location
+                      </p>
+                    </div>
                   </div>
                   <div>
-                    <p id="modal-username" class="fs-14 fw-600 mb-0"></p>
-                    <p id="postlocation" class="fs-12 mb-0">Random Location</p>
-                  </div>
-                  <div class="ml-12">
                     <i class="bi bi-three-dots"></i>
                   </div>
                 </div>
                 <hr />
-                <div class="comment-section pl-3 d-flex h-35">
-                  <div class="mr-3">
-                    <img
-                      src=""
-                      alt=""
-                      id="modal-profile-picture-comments"
-                      class="profile-picture-size rounded-circle"
-                    />
+                <div class="comment-section mr-2 d-flex flex-column">
+                  <div class="d-flex mb-3">
+                    <div class="mr-3">
+                      <img
+                        src=""
+                        alt=""
+                        id="modal-profile-picture-comments"
+                        class="profile-picture-size rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <span
+                        id="comment-section-username"
+                        class="fs-14 fw-600 mb-0"
+                      ></span>
+                      <span id="modal-post-caption" class="fs-14"></span>
+                    </div>
                   </div>
-                  <div>
-                    <span
-                      id="comment-section-username"
-                      class="fs-14 fw-600 mb-0"
-                    ></span>
-                    <span id="modal-post-caption" class="fs-14"></span>
-                  </div>
+                  <div id="hashTags"></div>
+                  <div id="user-comments" class="mr-3 d-flex flex-column"></div>
                 </div>
                 <hr />
 
-                <div class="like-section pl-3 pr-3">
+                <div class="like-section">
                   <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-between">
                       <div class="mr-3 fs-20 fw-600">
-                        <i class="bi bi-heart"></i>
+                        <i
+                          class="like-button far fa-heart"
+                          id="modal-like-button"
+                        ></i>
                       </div>
                       <div class="mr-3 fs-20">
                         <i class="bi bi-chat"></i>
@@ -230,19 +258,21 @@
                   </div>
                 </div>
                 <hr />
-                <div class="add-comment pl-3 pr-3 d-flex">
-                  <div class="fs-20">
-                    <i class="bi bi-emoji-smile"></i>
+                <div class="add-comment d-flex justify-content-between">
+                  <div class="d-flex">
+                    <div class="fs-20">
+                      <i class="bi bi-emoji-smile"></i>
+                    </div>
+                    <div class="ml-3">
+                      <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        class="border-less"
+                      />
+                    </div>
                   </div>
-                  <div class="ml-3">
-                    <input
-                      type="text"
-                      placeholder="Add a comment..."
-                      class="border-less"
-                    />
-                  </div>
-                  <div class="ml-8">
-                    <a href="" class="text-primary">Post</a>
+                  <div>
+                    <a href="" class="text-primary mr-2">Post</a>
                   </div>
                 </div>
               </div>
@@ -251,69 +281,192 @@
         </div>
       </div>
 
-      <!-- settings modal  -->
+      <!-- Following Modal -->
+      <div class="modal fade" id="followingModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div
+              class="modal-header d-flex align-items-center justify-content-between b-0"
+            >
+              <div
+                class="d-flex flex-column align-items-center justify-content-center w-100"
+              >
+                <img
+                  src="https://fastly.picsum.photos/id/1024/200/200.jpg?hmac=LR-PJPi70YREc_0NdDp68FkLt6-f1sKeJWwgOhCeyBU"
+                  alt="Profile Picture"
+                  class="rounded-circle"
+                  id="following-modal-profile-picture"
+                />
+                <h4
+                  class="modal-title fw-600 fs-14"
+                  id="following-modal-username"
+                ></h4>
+              </div>
+              <div>
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item justify-content-between">
+                  Close friend
+                  <span
+                    class="rounded-circle bg-success p-1 w-26 h-26 d-flex align-items-center justify-content-center"
+                    ><i class="bi bi-star-fill text-white"></i
+                  ></span>
+                </li>
+                <li class="list-group-item justify-content-between">
+                  Add to favorites
+                  <span class="fs-23"><i class="bi bi-star"></i></span>
+                </li>
+                <li class="list-group-item">Mute</li>
+                <li class="list-group-item">Restrict</li>
+                <li class="list-group-item">Unfollow</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- followers list modal  -->
       <div
         class="modal fade"
-        id="settingsModal"
+        id="followersModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="followersModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <div
+                class="d-flex justify-content-center align-items-center w-100"
+              >
+                <h5 class="modal-title fs-16 fw-600">Followers</h5>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </div>
+
+              <!-- Followers List -->
+              <div id="followers-list" class="overflow-auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- following list modal  -->
+      <div
+        class="modal fade"
+        id="followingListModal"
         tabindex="-1"
         role="dialog"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="container p-0">
-              <div class="row mt-2">
-                <div class="col">
-                  <button class="btn w-100 border-less">
-                    Apps and Websites
-                  </button>
-                </div>
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <div
+                class="d-flex justify-content-center align-items-center w-100"
+              >
+                <h5 class="modal-title fs-16 fw-600">Following</h5>
               </div>
-              <hr />
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn w-100 border-less">QR code</button>
-                </div>
-              </div>
-              <hr />
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn w-100 border-less">Notifications</button>
-                </div>
-              </div>
-              <hr />
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn w-100 border-less">
-                    Setting and Privacy
-                  </button>
-                </div>
-              </div>
-              <hr />
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn w-100 border-less">Supervision</button>
-                </div>
-              </div>
-              <hr />
-
-              <div class="row">
-                <div class="col">
-                  <button class="btn w-100 border-less">Log Out</button>
-                </div>
-              </div>
-              <hr />
-
-              <div class="row mb-3">
-                <div class="col">
-                  <button class="btn w-100 border-less">Cancel</button>
-                </div>
-              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </div>
+
+              <!-- Following List -->
+              <div id="following-list" class="overflow-auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- moreModal  -->
+
+      <div
+        class="modal fade"
+        id="moreModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content py-2">
+            <a href="" class="text-center py-1 text-danger fw-600">
+              <div>Block</div>
+            </a>
+            <hr />
+            <a href="" class="text-center py-1 text-danger fw-600">
+              <div>Restrict</div>
+            </a>
+            <hr />
+            <a href="" class="text-center py-1 text-danger fw-600">
+              <div>Report</div>
+            </a>
+            <hr />
+            <a href="" class="text-center py-1">
+              <div>Share to...</div>
+            </a>
+            <hr />
+            <a href="" class="text-center py-1">
+              <div>Embeded</div>
+            </a>
+            <hr />
+            <a href="" class="text-center py-1">
+              <div>About this account</div>
+            </a>
+            <hr />
+            <a
+              href=""
+              class="text-center py-1"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <div>Cancel</div>
+            </a>
           </div>
         </div>
       </div>
@@ -322,6 +475,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/userProfile.js"></script>
+    <script type="module" src="../js/apiFetch.js"></script>
+    <script type="module" src="../js/userProfile.js"></script>
   </body>
 </html>
