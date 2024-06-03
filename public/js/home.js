@@ -59,6 +59,11 @@ async function updateFollowing(userId, followUserId) {
   const success = await updateUserFollowing(userId, followUserId);
 }
 
+async function getUserById(userId){
+  const user = await fetchUserById(userId);
+  return user;
+}
+
 let storyFull = await receiveStories();
 let profileSuggestions = await receiveSuggestions();
 
@@ -548,44 +553,6 @@ async function addComment(postId, userId, text) {
   const newComment = await addCommentToPost(postId, userId, text);
 }
 
-const followingIds = Array.isArray(user.following) ? user.following : [];
-const filteredUsers = userData.filter(
-  (user) => user.username !== username && !followingIds.includes(user.id)
-);
-const nonFollowingFollowers = [];
-filteredUsers.forEach((userId) => {
-  const user = userData.find((user) => user.id === userId.id);
-  const followers = [];
-
-  if (user && user.followers && user.followers.length > 0) {
-    user.followers.forEach((follower) => {
-      const followerDetails = userData.find((user) => user.id === follower.id);
-      if (followerDetails) {
-        followers.push({
-          id: followerDetails.id,
-          username: followerDetails.username,
-          fullName: followerDetails.fullName,
-          email: followerDetails.email,
-          profilePicture: followerDetails.profilePicture,
-          bio: followerDetails.bio,
-        });
-      }
-    });
-  }
-
-  nonFollowingFollowers.push({
-    id: user.id,
-    username: user.username,
-    fullName: user.fullName,
-    email: user.email,
-    profilePicture: user.profilePicture,
-    bio: user.bio,
-    followers: followers,
-  });
-});
-
-console.log(nonFollowingFollowers);
-
 const following = (element) => {
   if (element.textContent.trim() === "Follow") {
     element.textContent = "Following";
@@ -611,28 +578,7 @@ const unfollow = () => {
 };
 
 //-----------------
-const suggestionFull = [
-  {
-    username: "username1",
-    followedBy: "followed By 1",
-    imgUrl: "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-  },
-  {
-    username: "username2",
-    followedBy: "followed By 2",
-    imgUrl: "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-  },
-  {
-    username: "username3",
-    followedBy: "followed By 3",
-    imgUrl: "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-  },
-  {
-    username: "username4",
-    followedBy: "followed By 4",
-    imgUrl: "https://www.sosyncd.com/wp-content/uploads/2022/06/62-2.png",
-  },
-];
+const suggestionFull = await receiveSuggestions();
 
 const suggestionContainer = document.querySelectorAll(".suggestion");
 let currentFollowButton = null;
@@ -655,7 +601,7 @@ suggestionFull.forEach((elements) => {
   details.classList.add("details");
 
   const img1 = document.createElement("img");
-  img1.setAttribute("src", elements.imgUrl);
+  img1.setAttribute("src", elements.profilePicture);
   img1.style.height = "5rem";
   img1.style.width = "5rem";
 
@@ -663,22 +609,34 @@ suggestionFull.forEach((elements) => {
   detailName.classList.add("detail-name");
   detailName.textContent = elements.username;
 
+  let followUserDetails;
+  elements.followers.forEach((element)=> {
+    followUserDetails = userData.find((followUserDetails) => followUserDetails.id === element);
+  });
+
+  const followedBy=document.createElement("p");
+  followedBy.classList.add("detail-by");
+  followedBy.textContent="Followed by";
   const detailBy = document.createElement("p");
   detailBy.classList.add("detail-by");
-  detailBy.textContent = elements.followedBy;
+  detailBy.textContent = followUserDetails.username;
 
   const img2 = document.createElement("img");
-  img2.setAttribute("src", elements.imgUrl);
+  img2.setAttribute("src", followUserDetails.profilePicture);
   img2.style.height = "1.25rem";
   img2.style.width = "1.25rem";
 
   const followButton = document.createElement("div");
   followButton.classList.add("suggest-follow");
   followButton.textContent = "Follow";
-  followButton.addEventListener("click", () => following(followButton));
+  followButton.addEventListener("click", () => {
+    following(followButton);
+    updateFollowing(user.id, elements.id);
+  });
 
   details.appendChild(img1);
   details.appendChild(detailName);
+  details.appendChild(followedBy);
   details.appendChild(detailBy);
   details.appendChild(img2);
 
