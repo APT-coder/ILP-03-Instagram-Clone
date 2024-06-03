@@ -1,0 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .splash-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+  }
+  .logo {
+    width: 100px;
+  }
+  .logo-bottom{
+    width: 80px;
+  }
