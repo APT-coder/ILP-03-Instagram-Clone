@@ -172,6 +172,7 @@ a {
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s;
+  padding: 1px;
 }
 
 .post .overlay {

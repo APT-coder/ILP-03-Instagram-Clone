@@ -229,39 +229,43 @@ function showSectionIcon(section) {
 
 function loadPosts(posts) {
   const postsContainer = document.getElementById("posts-container");
-  postsContainer.innerHTML = ""; //
+  postsContainer.innerHTML = "";
 
   posts.forEach((post) => {
-    if (post.userId === result + 1) {
-      const colDiv = document.createElement("div");
-      colDiv.classList.add("col-4", "mg-1", "post");
-
-      const img = document.createElement("img");
-      img.src = post.imageUrl;
-      img.alt = post.caption;
-      img.className = "img-fluid";
-      const overlay = document.createElement("div");
-      overlay.className = "overlay";
-      const likes = document.createElement("div");
-      likes.className = "likes";
-      likes.innerHTML = `<i class="fas fa-heart"></i> ${post.likes.length}`;
-      const comments = document.createElement("div");
-      comments.className = "comments";
-      comments.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length}`;
-      overlay.appendChild(likes);
-      overlay.appendChild(comments);
-      colDiv.appendChild(img);
-      colDiv.appendChild(overlay);
-      postsContainer.appendChild(colDiv);
-      colDiv.addEventListener("click", (event) => {
-        event.preventDefault();
-        try {
-          openModal(post);
-        } catch (error) {
-          console.error("Error opening modal:", error);
-        }
-      });
+    for(let i=0; i<userDetails[result].posts.length; i++){
+      if (userDetails[result].posts[i] === post.id) {
+        const colDiv = document.createElement("div");
+        colDiv.classList.add("col-4", "post");
+  
+        const img = document.createElement("img");
+        img.src = post.imageUrl;
+        img.alt = post.caption;
+        img.className = "img-fluid";
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        const likes = document.createElement("div");
+        likes.className = "likes";
+        likes.innerHTML = `<i class="fas fa-heart"></i> ${post.likes.length}`;
+        const comments = document.createElement("div");
+        comments.className = "comments";
+        comments.innerHTML = `<i class="fas fa-comment"></i> ${post.comments.length}`;
+        overlay.appendChild(likes);
+        overlay.appendChild(comments);
+        colDiv.appendChild(img);
+        colDiv.appendChild(overlay);
+        postsContainer.appendChild(colDiv);
+        console.log(post.id);
+        colDiv.addEventListener("click", (event) => {
+          event.preventDefault();
+          try {
+            openModal(post);
+          } catch (error) {
+            console.error("Error opening modal:", error);
+          }
+        });
+      }
     }
+   
   });
 }
 
