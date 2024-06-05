@@ -160,7 +160,7 @@ a {
 /* Post styling  */
 .post {
   position: relative;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   padding-top: calc(100% / 3 - 4px);
   height: 0px;
 }
@@ -173,6 +173,7 @@ a {
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s;
+  padding: 1px;
 }
 
 .post .overlay {

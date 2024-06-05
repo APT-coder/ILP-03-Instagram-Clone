@@ -17,7 +17,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <link rel="stylesheet" href="../css/userAccount.css" />
-    <script type="module" src="../../server/server.js"></script>
   </head>
 
   <body>
@@ -344,7 +343,7 @@
 
               <div class="row">
                 <div class="col">
-                  <button class="btn w-100 border-less">Log Out</button>
+                  <button class="btn w-100 border-less" onclick="logout()">Log Out</button>
                 </div>
               </div>
               <hr />
@@ -463,5 +462,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="module" src="../js/apiFetch.js"></script>
     <script type= "module" src="../js/userAccount.js"></script>
+    <script>
+      function logout(){
+        window.location.href="../html/login.html";
+      }
+    </script>
   </body>
 </html>
